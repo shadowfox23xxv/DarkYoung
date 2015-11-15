@@ -17,21 +17,6 @@ public class DarkYoung {
                 !!!!!!!!this is temp code for testing purposes!!!!!!!!!!!
                 !!!!!!!!!!remove once testing is complete!!!!!!!!!!!!!!!!
                 */ 
-		/*
-                boolean exitGame = false;
-                do {
-                    String[] test = parseInput(userInterface.runSplashScreen(), userInterface);
-                    if (test[0] != null){
-                        if (getCommandValid(test, 1, userInterface)){
-                            System.out.println("It's time to begin!");
-                        }
-                    if (test[0] == "quit"){exitGame = true;}
-                    }
-                } while (exitGame == false);
-                */
-                
-                
-             
                 userInterface.runSplashScreen();
                 boolean exitGame = false;
                 do {
@@ -39,9 +24,8 @@ public class DarkYoung {
                     if (test[0] != null){
                         if (theGame.getCommandValid(test, 1, userInterface)){
                             System.out.println("It's time to begin!");
-                        }
-                    //!!!!won't trigger to exit loop!!!!unsure why    
-                    if (test[0] == "quit"){exitGame = true;}
+                        }   
+                    if (test[0].equals("quit")){exitGame = true;}
                     }
                 } while (exitGame == false);
     }           
