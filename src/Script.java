@@ -6,7 +6,7 @@
 public class Script {
     //class methods
 	
-	public String title(int x){
+	public String getTitle(int x){
 		int option = x;
 		switch (option){
 			case 1: return ("Dark Young");
@@ -16,7 +16,7 @@ public class Script {
 	
 	}
 
-	public String subTitle(int x){
+	public String getSubTitle(int x){
 		int option = x;
 		switch (option){
 			case 1: return ("An interactive fiction horror game");
@@ -26,7 +26,7 @@ public class Script {
 		
 	}
 	
-	public String splashText(int x){
+	public String getSplashText(int x){
 		int option = x;
 		switch (option){
 			case 1: return ("There is more to the world than you can possibly know.  A hellish abyss lies underneath the thin venieer that you call reality. Can you handle peeking beneath the veil, to the nightmare beneath?  The Void is calling.  Will you answer?");
@@ -35,7 +35,7 @@ public class Script {
 		}
 	}
 	
-	public String inputInvalid(int x){
+	public String getInputInvalid(int x){
 		int option = x;
 		switch (option){
 			case 1: return ("Speak simply.  Too many words confuses the meaning.");
