@@ -32,7 +32,7 @@ public class Interface {
     //method to request and await player input
     //currently only showing waiting marker. Code for getting
     //input still needs to be added.
-	System.out.printf(">?");
+	System.out.printf(">?  ");
 	String capturedInput;
 	capturedInput = user_input.nextLine();
 	return capturedInput;
@@ -41,14 +41,20 @@ public class Interface {
 	public void warnTooManyWords(){
 		System.out.println(script.getInputInvalid(1));
 	}
+        
+        public void warnCant(){
+            System.out.println(script.invalidCommand(1));
+        }
 
-	public String runSplashScreen(){
+	public void runSplashScreen(){
 		System.out.println(script.getTitle(1));
 		this.insertLineBreak(1);
 		System.out.println(script.getSubTitle(1));
 		this.insertLineBreak(3);
 		this.insertLine();
 		System.out.println(script.getSplashText(1));
-		return this.getInput();
+                this.insertLineBreak(1);
+                System.out.println(script.getSplashText(2));
+                //return this.getInput();
 	}
 }
