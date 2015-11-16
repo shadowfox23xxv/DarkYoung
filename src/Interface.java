@@ -6,55 +6,63 @@
 import java.util.Scanner;
 
 public class Interface {
+    //Objects--------------------------------------------------------------
     //instantiate a Script class object to access strings
-    Script script = new Script();
-	//instantiate a Scanner class object to gather user input
+    Script script = new Script();   
+    //instantiate a Scanner class object to gather user input
     Scanner user_input = new Scanner(System.in);
-	
-    //class methods
+    
+
+    //formatting tools-----------------------------------------------------
+    //Inserts line breaks for formatting purposes
     public void insertLineBreak(int x){
-		//method to insert line breaks for formatting purposes.
-		//arguement passed determines how many breaks are inserted
-		int end = x;
-		int count = 0;
-		while (count < end) {
-			System.out.println(" ");
-		count++;
-		}
-	}		
+	//arguement passed determines how many breaks are inserted
+	int end = x;
+	int count = 0;
+	while (count < end) {
+            System.out.println(" ");
+            count++;
+        }
+    }		
 
-
+    //Inserts a line of hyphens for formatting purposes
     public void insertLine(){
 		System.out.println("-----------------------------------------------------------------------");
 	}
-	
+    
+
+    //Input-----------------------------------------------------------------
+    //Shows "waiting for input" marker and captures player input
     public String getInput(){
-    //method to request and await player input
-    //currently only showing waiting marker. Code for getting
-    //input still needs to be added.
-	System.out.printf(">?  ");
-	String capturedInput;
-	capturedInput = user_input.nextLine();
+    	System.out.printf(">?  ");
+	String capturedInput = user_input.nextLine();
 	return capturedInput;
     }
+    
 
-	public void warnTooManyWords(){
-		System.out.println(script.getInputInvalid(1));
-	}
+    //Warnings-------------------------------------------------------------
+    //Warning to inform player that their input is too big
+    public void warnTooManyWords(){
+	System.out.println(script.getInputInvalid(1));
+    }
         
-        public void warnCant(){
-            System.out.println(script.invalidCommand(1));
-        }
+    //Warning to inform player that their input is not a valid command
+    public void warnCant(){
+        System.out.println(script.invalidCommand(1));
+    }
+    
 
-	public void runSplashScreen(){
-		System.out.println(script.getTitle(1));
-		this.insertLineBreak(1);
-		System.out.println(script.getSubTitle(1));
-		this.insertLineBreak(3);
-		this.insertLine();
-		System.out.println(script.getSplashText(1));
-                this.insertLineBreak(1);
-                System.out.println(script.getSplashText(2));
-                //return this.getInput();
-	}
+    //Formats---------------------------------------------------------------
+    //defines and formatts splash screen at start of game
+    public void runSplashScreen(){
+        System.out.println(script.getTitle(1));
+	this.insertLineBreak(1);
+	System.out.println(script.getSubTitle(1));
+	this.insertLineBreak(3);
+	this.insertLine();
+	System.out.println(script.getSplashText(1));
+        this.insertLineBreak(1);
+        System.out.println(script.getSplashText(2));
+        
+    }
 }
