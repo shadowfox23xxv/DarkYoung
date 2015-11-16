@@ -4,7 +4,8 @@
  * @author bleakbriar
  */
 public class DarkYoung {
-    static final int MAX_INPUT = 1;
+    static final int MAX_INPUT = 5;
+    public boolean debugModeOn = false;
     
     public static void main(String arg[]){
         //instantiate game object
@@ -17,12 +18,42 @@ public class DarkYoung {
         !!!!!!!!!!remove once testing is complete!!!!!!!!!!!!!!!!
         */ 
         userInterface.runSplashScreen();
-        String[] test = theGame.validateCommandMenu(userInterface.getInput(), userInterface);
+        /*String[] test = theGame.validateCommandMenu(userInterface.getInput(), userInterface);
         if (test[0] != null){
             System.out.println("You entered " + test[0] + "!" );
         } else {
             System.out.println("Ah ah ah! You didn't say the magic word!");
-        }
+        }*/
+        //!!!!Beginning of actual code for splash screen menu!!!!!
+        //!!!!!!!!!!!!!test again!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        boolean exitMenuCondition = false;
+        do {
+            String[] testInputMenu = theGame.validateCommandMenu(userInterface.getInput(), userInterface);
+            if (testInputMenu[0] != null){
+                switch (testInputMenu[0]){
+                    case "start": exitMenuCondition = true;
+                    break;
+                    case "debug": {if (theGame.debugModeOn == true){
+                        theGame.debugModeOn = false;
+                        userInterface.debugMode(2);
+                        } else {
+                        theGame.debugModeOn = true;
+                        userInterface.debugMode(1);
+                        }
+                    }
+                    break;
+                    case "quit": {
+                        userInterface.quitScreen();
+                        System.exit(0);
+                    }
+                    break;
+                
+                    
+                }
+            } else { System.out.println("Try again...");}
+            
+        } while(exitMenuCondition == false);
+        System.out.println("The journey begins...");
     }           
 
 
@@ -54,11 +85,11 @@ public class DarkYoung {
             switch (strArray[0]){
                 case "start": isValid = true;
                 break;
-                case "help": isValid = true;
-                break;
                 case "quit": isValid = true;
                 break;
-                default: uI.warnCant();
+                case "debug": isValid = true;
+                break;
+                default: uI.warnInvalid();
             }
         }
         if (isValid){

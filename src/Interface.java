@@ -47,10 +47,14 @@ public class Interface {
     }
         
     //Warning to inform player that their input is not a valid command
-    public void warnCant(){
+    public void warnInvalid(){
         System.out.println(script.invalidCommand(1));
     }
     
+    //Warning to inform player that debug mode has been activated
+    public void debugMode(int x){
+        System.out.println(script.debug(x));
+    }    
 
     //Formats---------------------------------------------------------------
     //defines and formatts splash screen at start of game
@@ -65,4 +69,14 @@ public class Interface {
         System.out.println(script.getSplashText(2));
         
     }
+    
+    //Defines and formatts quite screen
+    public void quitScreen(){
+        this.insertLine();
+        this.insertLineBreak(1);
+        System.out.println(script.quitTitle(1));
+        this.insertLineBreak(2);
+        System.out.println(script.quitText(1));
+    }
+    
 }
