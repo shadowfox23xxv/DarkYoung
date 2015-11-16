@@ -6,9 +6,9 @@ Character: virtual parent class for player, NPC, and monster classes. Each creat
 
 Player: single object for player character, max inventory, weirdness(measure of past contact with hidden reality)
 
-Location: objects represent locations that can be visited. Exits(nsew act as pointers to other locations) number of exits, description, inventory(items placed in location), dropped(container to hold items left at location by player) events(3types, one time events that happen when the player first enters location, triggered events, and random events that may trigger when player enters location), visited(boolen to mark if player has been here before, used to determine trigger for one time events)
+Location: objects represent locations that can be visited. Exits(act as pointers to other locations) number of exits, description, inventory(items placed in location), dropped(container to hold items left at location by player) events(3types, one time events that happen when the player first enters location, triggered events, and random events that may trigger when player enters location), visited(boolen to mark if player has been here before, used to determine trigger for one time events)
 
-Item: objects repressenting in game objects. Pickupable, throwable, swingable, useable, on, weight,
+Item: objects repressenting in game objects. Pickupable, throwable, swingable, useable, on, weight, prop
 
 Container: derived from item class. Adds inventory function to hold other items. Max capacity
 
