@@ -36,19 +36,19 @@ Version 0.3
 -goals: add location class and implement via basic room with description, add additional commands for interaction with room
 
 Version 0.4
--goals: add character class. Add player class. Add appropriate commands
+-goals:expand map to include mutliple locations.  add appropriate commands. 
 
 Version 0.5
--goals: add inventory class. Implement inventory class in player class and location class. Add appropriate commands
+-goals:add character class. Add player class. Add appropriate commands 
 
 Version 0.6
--goals: Add item class.  add basic items to room and player inventory. Add appropriate commands.
+-goals: add inventory class. Implement inventory class in player class and location class. Add appropriate commands
 
 Version 0.7
--goals: add container sub-class to item class. Implement container for dropped items in room. Add appropriate commands.
+-goals: Add item class.  add basic items to room and player inventory. Add appropriate commands.
 
 Version 0.8
--goals: expand map to include mutliple locations.  add appropriate commands.
+-goals: add container sub-class to item class. Implement container for dropped items in room. Add appropriate commands.
 
 Version 0.9
 -goals: populate rooms with items and containers

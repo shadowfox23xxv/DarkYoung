@@ -75,11 +75,13 @@ public class Script {
     //debug mode on/off message
     public String debug(int x){
         switch (x){
-            case 1: return("Debug mode on...");
+            case 1: return ("Debug mode on...");
             //break statement removed as unreachable
             case 2: return ("Debug mode off...");
             //break statement removed as unreachable
             default: return ("Debug mode option not available");
         }   
     }
+    
+       
 }

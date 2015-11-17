@@ -10,22 +10,13 @@ public class DarkYoung {
     public static void main(String arg[]){
         //instantiate game object
         DarkYoung theGame = new DarkYoung();
-        //instantiate interface 
+        //instantiate interface object 
         Interface userInterface = new Interface();
-		
-	/*display splash screen using temporary test variable
-        !!!!!!!!this is temp code for testing purposes!!!!!!!!!!!
-        !!!!!!!!!!remove once testing is complete!!!!!!!!!!!!!!!!
-        */ 
-        userInterface.runSplashScreen();
-        /*String[] test = theGame.validateCommandMenu(userInterface.getInput(), userInterface);
-        if (test[0] != null){
-            System.out.println("You entered " + test[0] + "!" );
-        } else {
-            System.out.println("Ah ah ah! You didn't say the magic word!");
-        }*/
+        	
+	//------------------------------------------------------------------------
         //!!!!Beginning of actual code for splash screen menu!!!!!
         //!!!!!!!!!!!!!test again!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        userInterface.runSplashScreen();
         boolean exitMenuCondition = false;
         do {
             String[] testInputMenu = theGame.validateCommandMenu(userInterface.getInput(), userInterface);
@@ -47,13 +38,42 @@ public class DarkYoung {
                         System.exit(0);
                     }
                     break;
-                
-                    
                 }
             } else { System.out.println("Try again...");}
-            
         } while(exitMenuCondition == false);
         System.out.println("The journey begins...");
+        //--------------------------------------------------------------------
+        /*code for debug map.  Can be removed once testing is complete, 
+        or left intact for future debugging.  Suggest making accessible only 
+        while debug mode enabled.
+        */
+        Locations mapBuilder = new Locations();
+        Locations[] map = mapBuilder.generateDebugMap();
+        
+        //currentLocation will be replaced with a similar variable in character class
+        Locations currentLocation = map[0];
+        System.out.println(currentLocation.getRoomGeneralDescription());
+        boolean exitCondition = false;
+        do{
+            String[] userInput = theGame.validateCommand(userInterface.getInput(), userInterface);
+            if (userInput[0] != null){
+                switch (userInput[0]){
+                case "look": { if (userInput[1].equals("around") && userInput.length == 2){
+                    System.out.println(currentLocation.getRoomDescription());
+                    }
+                }    
+                break;
+                case "quit": { if (userInput.length == 1){
+                    userInterface.quitScreen();
+                    System.exit(0);
+                    }
+                }
+                break;
+                
+                default: userInterface.warnInvalid();
+            }
+            }
+        } while(exitCondition == true);
     }           
 
 
@@ -100,5 +120,31 @@ public class DarkYoung {
         } 
            
     }
-            
+    
+    String[] validateCommand(String str, Interface uI){
+    String[] strArray = this.parseInput(str, uI);
+        boolean isValid = false;
+        if (strArray[0] != null){
+            switch (strArray[0]){
+                case "look": { if (strArray[1].equals("around") && strArray.length == 2){
+                    isValid = true;
+                    }
+                }    
+                break;
+                case "quit": { if (strArray.length == 1){
+                    isValid = true;
+                    }
+                }
+                break;
+                
+                default: uI.warnInvalid();
+            }
+        }
+        if (isValid){
+            return strArray;
+        } else {
+            strArray[0] = null;
+            return strArray;
+        } 
+    }            
 }
