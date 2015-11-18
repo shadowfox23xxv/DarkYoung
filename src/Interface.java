@@ -43,6 +43,7 @@ public class Interface {
 	return capturedInput;
     }
     
+    //Output-----------------------------------------------------------------
     public void printLocationDescriptionGeneral(Locations current){
         this.insertLineBreak(1);
         System.out.println(current.getRoomGeneralDescription());
@@ -50,6 +51,10 @@ public class Interface {
     
      public void printLocationDescription(Locations current){
         System.out.println(current.getRoomDescription());
+    }
+     
+    public void showPlayerHealth(Player player){
+        System.out.println("Your health is " + player.getHealth() + "/" + player.getMaxHealth());
     }
 
     //Warnings-------------------------------------------------------------

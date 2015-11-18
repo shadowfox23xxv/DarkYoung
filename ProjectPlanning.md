@@ -24,7 +24,7 @@ Inventory: class containing an inventory liked list and methods for organizing, 
 
 Version control scheme:
 
-Major(full release number).Minor(functional incrementation).release state(0alpha, 1beta, 3release candidate, 4release version).develpmental incrementation(working on functional incrementation)
+Major(full release number).Minor/phase(functional incrementation).release state(0alpha, 1beta, 3release candidate, 4release version).develpmental incrementation(working on functional incrementation)
 
 Version 0.1
 -goals: add main, interface, and script classes. Minimal functionality intended as a baseline for functional development.

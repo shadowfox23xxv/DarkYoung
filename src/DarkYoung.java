@@ -53,42 +53,43 @@ public class DarkYoung {
         //used beyond this.
         Locations mapBuilder = new Locations();
         Locations[] map = mapBuilder.generateDebugMap();
+        Player player = new Player();
         
         //currentLocation will be replaced with a similar variable in character class
-        Locations currentLocation = map[0];
-        userInterface.printLocationDescriptionGeneral(currentLocation);
+        player.changeLocation(map[0]); 
+        userInterface.printLocationDescriptionGeneral(player.getLocation());
         boolean exitCondition = false;
         do{
             String[] userInput = theGame.validateCommand(userInterface.getInput(), userInterface);
             if (userInput[0] != null){
                 switch (userInput[0]){
                 case "look": { if (userInput[1].equals("around")){
-                    userInterface.printLocationDescription(currentLocation);
+                    userInterface.printLocationDescription(player.getLocation());
                     }
                 }    
                 break;
                 case "walk": {if (userInput[1].equals("north") || userInput[1].equals("n")){
-                        if (currentLocation.northExit != null){
-                        currentLocation = currentLocation.northExit;
-                        userInterface.printLocationDescriptionGeneral(currentLocation);
+                        if (player.getLocation().northExit != null){
+                        player.changeLocation(player.getLocation().northExit);
+                        userInterface.printLocationDescriptionGeneral(player.getLocation());
                         }else {userInterface.printWarning(3);}
                     } 
                     if (userInput[1].equals("east") || userInput[1].equals("e")){
-                        if (currentLocation.eastExit != null){
-                        currentLocation = currentLocation.eastExit;
-                        userInterface.printLocationDescriptionGeneral(currentLocation);
+                        if (player.getLocation().eastExit != null){
+                        player.changeLocation(player.getLocation().eastExit);
+                        userInterface.printLocationDescriptionGeneral(player.getLocation());
                         }else {userInterface.printWarning(3);}
                     }
                         if (userInput[1].equals("south") || userInput[1].equals("s")){
-                            if (currentLocation.southExit != null){
-                            currentLocation = currentLocation.southExit;
-                            userInterface.printLocationDescriptionGeneral(currentLocation);
+                            if (player.getLocation().southExit != null){
+                            player.changeLocation(player.getLocation().southExit);
+                            userInterface.printLocationDescriptionGeneral(player.getLocation());
                             }else {userInterface.printWarning(3);}
                         } 
                         if (userInput[1].equals("west") || userInput[1].equals("w")){
-                            if (currentLocation.westExit != null){
-                            currentLocation = currentLocation.westExit;
-                            userInterface.printLocationDescriptionGeneral(currentLocation);
+                            if (player.getLocation().westExit != null){
+                            player.changeLocation(player.getLocation().westExit);
+                            userInterface.printLocationDescriptionGeneral(player.getLocation());
                             }else {userInterface.printWarning(3);}
                         }
                     } 
@@ -99,7 +100,9 @@ public class DarkYoung {
                         }
                     }   
                 break;
-                
+                //debug mode commands
+                case "myhealth": userInterface.showPlayerHealth(player);
+                break;
                 default: userInterface.printWarning(1);
                 }   
             }
@@ -170,9 +173,15 @@ public class DarkYoung {
                 case "walk": { if (strArray.length == 2){
                         if ( strArray[1].matches ("north|south|east|west|n|s|e|w")){
                             isValid = true;
-                        }
+                        }else {uI.printWarning(1);}  
                     }
                 }
+                break;
+                //debug mode commands
+                case "myhealth": { if (strArray.length == 1 && debugModeOn == true){
+                        isValid = true;
+                        }else {uI.printWarning(1);}
+                    }
                 break;
                 default: uI.printWarning(1);
             }
