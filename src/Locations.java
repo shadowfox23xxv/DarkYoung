@@ -27,13 +27,6 @@ public class Locations{
         return this.roomDescription;
     }
     
-    //constructor to more easily create objects
-    public Locations(int exit, String description, String generalDescription){
-    totalNumberOfRooms += 1;
-    numberOfExits = exit;
-    roomDescription = description;
-    roomGeneralDescription = generalDescription;
-    }
     //default constuctor
     public Locations(){
         totalNumberOfRooms += 1;
@@ -55,10 +48,25 @@ public class Locations{
     
     //build debug map
     public Locations[] generateDebugMap(){
-        Locations[] map = createLocations(1);
-        map[0].numberOfExits = 0;
+        Locations[] map = createLocations(4);
+        map[0].numberOfExits = 1;
         map[0].roomGeneralDescription = "You are standing in a small, dimly lit bedroom, with one door to the south, and a window to the north.";
         map[0].roomDescription = "The room is dirty. Dust covers the bed and small dresser inside.  The only light comes from the moon outside, shining through a tattered curtain hung over the window.  There is a single door to the south.";
+        map[0].southExit = map[1];
+        map[1].numberOfExits = 2;
+        map[1].roomGeneralDescription = "You enter a darkened hallway that extends to the east. There is a door to the north.";
+        map[1].roomDescription = "You enter a darkend hallway that extends to the east. There is a door to the north.";
+        map[1].northExit = map[0];
+        map[1].eastExit = map[2];
+        map[2].numberOfExits = 2;
+        map[2].roomGeneralDescription = "You enter a dim hallway that extends to the west. There is a door to the south.";
+        map[2].roomDescription = "You enter a dim hallway that extends to the west. Set at the near end of the hallway is a small, dirty window. There is a door to the south.";
+        map[2].westExit = map[1];
+        map[2].southExit = map[3];
+        map[3].numberOfExits = 1;
+        map[3].roomGeneralDescription = "You enter a den, with simple furniture.  A couch, an endtable, and a fireplace. There is a door to the north, and a thicker, heavier door to the south.";
+        map[3].roomDescription = "It's a simple room, dusty and sprinkled with cobwebs.  The couch and endtable looks like it hasn't been used in ages.  The fireplace is dark, and the southern door is heavily boarded.";
+        map[3].northExit = map[2];
         return map;
     }    
 }

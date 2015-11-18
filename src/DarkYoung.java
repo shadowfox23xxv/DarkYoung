@@ -13,7 +13,7 @@ public class DarkYoung {
         //instantiate interface object 
         Interface userInterface = new Interface();
         	
-	//------------------------------------------------------------------------
+//==================================================================================================
         //!!!!Beginning of actual code for splash screen menu!!!!!
         //!!!!!!!!!!!!!test again!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         userInterface.runSplashScreen();
@@ -44,11 +44,13 @@ public class DarkYoung {
         System.out.println("The journey begins...");
         userInterface.insertLineBreak(5);
         userInterface.insertDoubleLine();
-        //--------------------------------------------------------------------
+//=================================================================================================
         /*code for debug map.  Can be removed once testing is complete, 
         or left intact for future debugging.  Suggest making accessible only 
         while debug mode enabled.
         */
+        //mapBuilder is required as generateDebugMap() is nonstatic. It is not 
+        //used beyond this.
         Locations mapBuilder = new Locations();
         Locations[] map = mapBuilder.generateDebugMap();
         
@@ -78,7 +80,8 @@ public class DarkYoung {
         } while(exitCondition == false);
     }           
 
-
+//--------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
     String[] parseInput(String str, Interface uI){
 	/**Separates string from user into string array
         * Returns NULL in [0] if input doesn't meet parser
