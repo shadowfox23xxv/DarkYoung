@@ -56,17 +56,43 @@ public class DarkYoung {
         
         //currentLocation will be replaced with a similar variable in character class
         Locations currentLocation = map[0];
-        System.out.println(currentLocation.getRoomGeneralDescription());
+        userInterface.printLocationDescriptionGeneral(currentLocation);
         boolean exitCondition = false;
         do{
             String[] userInput = theGame.validateCommand(userInterface.getInput(), userInterface);
             if (userInput[0] != null){
                 switch (userInput[0]){
                 case "look": { if (userInput[1].equals("around")){
-                    System.out.println(currentLocation.getRoomDescription());
+                    userInterface.printLocationDescription(currentLocation);
                     }
                 }    
                 break;
+                case "walk": {if (userInput[1].equals("north") || userInput[1].equals("n")){
+                        if (currentLocation.northExit != null){
+                        currentLocation = currentLocation.northExit;
+                        userInterface.printLocationDescriptionGeneral(currentLocation);
+                        }else {userInterface.printWarning(3);}
+                    } 
+                    if (userInput[1].equals("east") || userInput[1].equals("e")){
+                        if (currentLocation.eastExit != null){
+                        currentLocation = currentLocation.eastExit;
+                        userInterface.printLocationDescriptionGeneral(currentLocation);
+                        }else {userInterface.printWarning(3);}
+                    }
+                        if (userInput[1].equals("south") || userInput[1].equals("s")){
+                            if (currentLocation.southExit != null){
+                            currentLocation = currentLocation.southExit;
+                            userInterface.printLocationDescriptionGeneral(currentLocation);
+                            }else {userInterface.printWarning(3);}
+                        } 
+                        if (userInput[1].equals("west") || userInput[1].equals("w")){
+                            if (currentLocation.westExit != null){
+                            currentLocation = currentLocation.westExit;
+                            userInterface.printLocationDescriptionGeneral(currentLocation);
+                            }else {userInterface.printWarning(3);}
+                        }
+                    } 
+                break; 
                 case "quit": { if (userInput.length == 1){
                     userInterface.runQuitScreen();
                     System.exit(0);
@@ -139,6 +165,13 @@ public class DarkYoung {
                 case "quit": { if (strArray.length == 1){
                     isValid = true;
                     }else {uI.printWarning(1);}
+                }
+                break;
+                case "walk": { if (strArray.length == 2){
+                        if ( strArray[1].matches ("north|south|east|west|n|s|e|w")){
+                            isValid = true;
+                        }
+                    }
                 }
                 break;
                 default: uI.printWarning(1);

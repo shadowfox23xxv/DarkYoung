@@ -43,6 +43,14 @@ public class Interface {
 	return capturedInput;
     }
     
+    public void printLocationDescriptionGeneral(Locations current){
+        this.insertLineBreak(1);
+        System.out.println(current.getRoomGeneralDescription());
+    }    
+    
+     public void printLocationDescription(Locations current){
+        System.out.println(current.getRoomDescription());
+    }
 
     //Warnings-------------------------------------------------------------
    //singular warning method to replace warnTooManyWords and warnInvalid
@@ -50,7 +58,9 @@ public class Interface {
         switch (x){
             case 1: System.out.println(script.unrecognizedCommandText(1));
             break;
-            case 2: System.out.println(script.inputInvalidText(1));    
+            case 2: System.out.println(script.inputInvalidText(1));
+            break;
+            case 3: System.out.println(script.commandImpossibleText(1));
             break;
             default: System.out.println("Warning option not available");
         }

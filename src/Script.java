@@ -52,13 +52,21 @@ public class Script {
 	
     //Input does not  meet parser requirements(too long, or symbols)
     public String inputInvalidText(int x){
-	int option = x;
-	switch (option){
+	switch (x){
             case 1: return ("Speak simply and clearly.  Words may confuse the meaning.");
             //break statement removed as unreachable
             default: return ("Invalid input option not avaialable.");
 	}
     }
+    
+    //command is valid but can't be accomplished
+    public String commandImpossibleText(int x){
+        switch (x){
+            case 1: return ("You can't do that");
+            //break statement removed as unreachable
+            default: return ("Command impossible option not available");
+        }
+    }    
     
     //Title for quit screen
     public String quitTitle(int x){
