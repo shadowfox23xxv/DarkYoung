@@ -44,9 +44,9 @@ public class Locations{
     Locations[] createLocations(int x){
         int iterate = 0;
         int loopMax = x;
-        Locations[] arrayOfLocations = new Locations[x -1];
-        while (iterate <= loopMax){
-            int index = iterate -1;
+        Locations[] arrayOfLocations = new Locations[x];
+        while (iterate < loopMax){
+            int index = iterate;
             arrayOfLocations[index] = new Locations();
             iterate += 1;
         }

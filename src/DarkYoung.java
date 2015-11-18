@@ -42,6 +42,8 @@ public class DarkYoung {
             } else { System.out.println("Try again...");}
         } while(exitMenuCondition == false);
         System.out.println("The journey begins...");
+        userInterface.insertLineBreak(5);
+        userInterface.insertDoubleLine();
         //--------------------------------------------------------------------
         /*code for debug map.  Can be removed once testing is complete, 
         or left intact for future debugging.  Suggest making accessible only 
@@ -58,7 +60,7 @@ public class DarkYoung {
             String[] userInput = theGame.validateCommand(userInterface.getInput(), userInterface);
             if (userInput[0] != null){
                 switch (userInput[0]){
-                case "look": { if (userInput[1].equals("around") && userInput.length == 2){
+                case "look": { if (userInput[1].equals("around")){
                     System.out.println(currentLocation.getRoomDescription());
                     }
                 }    
@@ -66,14 +68,14 @@ public class DarkYoung {
                 case "quit": { if (userInput.length == 1){
                     userInterface.quitScreen();
                     System.exit(0);
-                    }
-                }
+                        }
+                    }   
                 break;
                 
                 default: userInterface.warnInvalid();
+                }   
             }
-            }
-        } while(exitCondition == true);
+        } while(exitCondition == false);
     }           
 
 
@@ -126,17 +128,16 @@ public class DarkYoung {
         boolean isValid = false;
         if (strArray[0] != null){
             switch (strArray[0]){
-                case "look": { if (strArray[1].equals("around") && strArray.length == 2){
+                case "look": { if (strArray.length == 2 && strArray[1].equals("around")){
                     isValid = true;
-                    }
+                    }else {uI.warnInvalid();}
                 }    
                 break;
                 case "quit": { if (strArray.length == 1){
                     isValid = true;
-                    }
+                    }else {uI.warnInvalid();}
                 }
                 break;
-                
                 default: uI.warnInvalid();
             }
         }

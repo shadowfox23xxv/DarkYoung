@@ -27,9 +27,13 @@ public class Interface {
 
     //Inserts a line of hyphens for formatting purposes
     public void insertLine(){
-		System.out.println("-----------------------------------------------------------------------");
-	}
+        System.out.println("-----------------------------------------------------------------------");
+    }
     
+    //insert line of equal signs for formatting purposes
+    public void insertDoubleLine(){
+        System.out.println("=======================================================================");
+    }
 
     //Input-----------------------------------------------------------------
     //Shows "waiting for input" marker and captures player input
