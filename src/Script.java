@@ -27,17 +27,22 @@ public class Script {
     }
 	
     //Additional text to display in splash screen
-    public String getSplashText(int x){
+    public String getSplashScreenText(int x){
 	switch (x){
-            case 1: return ("There is more to the world than you can possibly know.  A hellish abyss lies underneath the thin venieer that you call reality. Can you handle peeking beneath the veil, to the nightmare beneath?  The Void is calling.  Will you answer?");
+            case 1: return ("Dark Young");
             //break statement removed as unreachable
-            case 2: return ("Type Start to begin, or quit to leave. No one would blame you...");
-            default: return ("Splashtext option not available");
+            case 2: return ("An interactive fiction horror game");
+            //break statement removed as unreachable
+            case 3: return ("There is more to the world than you can possibly know.  A hellish abyss lies underneath the thin venieer that you call reality. Can you handle peeking beneath the veil, to the nightmare beneath?  The Void is calling.  Will you answer?");
+            //break statement removed as unreachable
+            case 4: return ("Type Start to begin, or quit to leave. No one would blame you...");
+            //break statement removed as unreachable
+            default: return ("Splash screen text option not available");
 	}
     }
         
     //Command is not recognized
-    public String invalidCommand(int x){
+    public String unrecognizedCommandText(int x){
         switch (x){
             case 1: return("The Void does not understand.");
             //break statement removed as unreachable
@@ -46,10 +51,10 @@ public class Script {
     }
 	
     //Input does not  meet parser requirements(too long, or symbols)
-    public String getInputInvalid(int x){
+    public String inputInvalidText(int x){
 	int option = x;
 	switch (option){
-            case 1: return ("Speak simply.  Too many words confuses the meaning.");
+            case 1: return ("Speak simply and clearly.  Words may confuse the meaning.");
             //break statement removed as unreachable
             default: return ("Invalid input option not avaialable.");
 	}

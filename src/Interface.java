@@ -45,14 +45,15 @@ public class Interface {
     
 
     //Warnings-------------------------------------------------------------
-    //Warning to inform player that their input is too big
-    public void warnTooManyWords(){
-	System.out.println(script.getInputInvalid(1));
-    }
-        
-    //Warning to inform player that their input is not a valid command
-    public void warnInvalid(){
-        System.out.println(script.invalidCommand(1));
+   //singular warning method to replace warnTooManyWords and warnInvalid
+    public void printWarning(int x){
+        switch (x){
+            case 1: System.out.println(script.unrecognizedCommandText(1));
+            break;
+            case 2: System.out.println(script.inputInvalidText(1));    
+            break;
+            default: System.out.println("Warning option not available");
+        }
     }
     
     //Warning to inform player that debug mode has been activated
@@ -63,19 +64,19 @@ public class Interface {
     //Formats---------------------------------------------------------------
     //defines and formatts splash screen at start of game
     public void runSplashScreen(){
-        System.out.println(script.getTitle(1));
+        System.out.println(script.getSplashScreenText(1));
 	this.insertLineBreak(1);
-	System.out.println(script.getSubTitle(1));
+	System.out.println(script.getSplashScreenText(2));
 	this.insertLineBreak(3);
 	this.insertLine();
-	System.out.println(script.getSplashText(1));
+	System.out.println(script.getSplashScreenText(3));
         this.insertLineBreak(1);
-        System.out.println(script.getSplashText(2));
+        System.out.println(script.getSplashScreenText(4));
         
     }
     
     //Defines and formatts quite screen
-    public void quitScreen(){
+    public void runQuitScreen(){
         this.insertLine();
         this.insertLineBreak(1);
         System.out.println(script.quitTitle(1));

@@ -34,7 +34,7 @@ public class DarkYoung {
                     }
                     break;
                     case "quit": {
-                        userInterface.quitScreen();
+                        userInterface.runQuitScreen();
                         System.exit(0);
                     }
                     break;
@@ -66,13 +66,13 @@ public class DarkYoung {
                 }    
                 break;
                 case "quit": { if (userInput.length == 1){
-                    userInterface.quitScreen();
+                    userInterface.runQuitScreen();
                     System.exit(0);
                         }
                     }   
                 break;
                 
-                default: userInterface.warnInvalid();
+                default: userInterface.printWarning(1);
                 }   
             }
         } while(exitCondition == false);
@@ -92,7 +92,7 @@ public class DarkYoung {
         and make method call to inform player
         */
 	if (strArray.length > MAX_INPUT) {
-            uI.warnTooManyWords();
+            uI.printWarning(2);
             String[] returnNull = new String[1];
             returnNull[0] = null;
             return returnNull;
@@ -111,7 +111,7 @@ public class DarkYoung {
                 break;
                 case "debug": isValid = true;
                 break;
-                default: uI.warnInvalid();
+                default: uI.printWarning(1);
             }
         }
         if (isValid){
@@ -130,15 +130,15 @@ public class DarkYoung {
             switch (strArray[0]){
                 case "look": { if (strArray.length == 2 && strArray[1].equals("around")){
                     isValid = true;
-                    }else {uI.warnInvalid();}
+                    }else {uI.printWarning(1);}
                 }    
                 break;
                 case "quit": { if (strArray.length == 1){
                     isValid = true;
-                    }else {uI.warnInvalid();}
+                    }else {uI.printWarning(1);}
                 }
                 break;
-                default: uI.warnInvalid();
+                default: uI.printWarning(1);
             }
         }
         if (isValid){
