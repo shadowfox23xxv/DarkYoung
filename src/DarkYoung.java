@@ -59,13 +59,13 @@ public class DarkYoung {
         userInterface.printLocationDescriptionGeneral(player.getLocation());
         boolean exitCondition = false;
         do{
-            String[] userInput = theGame.validateCommand(userInterface.getInput(), userInterface);
+            String[] userInput = theGame.validateCommand(userInterface.getInput(), userInterface, inventory);
             if (userInput[0] != null){
                 switch (userInput[0]){
                 case "look": { if (userInput[1].equals("around")){
                     userInterface.printLocationDescription(player.getLocation());
                     }
-                }    
+                }
                 break;
                 case "walk": {if (userInput[1].equals("north") || userInput[1].equals("n")){
                         if (player.getLocation().northExit != null){
@@ -93,6 +93,56 @@ public class DarkYoung {
                         }
                     } 
                 break; 
+                case "north": {if (player.getLocation().northExit != null){
+                    player.changeLocation(player.getLocation().northExit);
+                    userInterface.printLocationDescriptionGeneral(player.getLocation());
+                        }else {userInterface.printWarning(3);}
+                    } 
+                break;
+                case "east": {if (player.getLocation().eastExit != null){
+                    player.changeLocation(player.getLocation().eastExit);
+                    userInterface.printLocationDescriptionGeneral(player.getLocation());
+                        }else {userInterface.printWarning(3);}
+                    } 
+                break;
+                case "south": {if (player.getLocation().southExit != null){
+                    player.changeLocation(player.getLocation().southExit);
+                    userInterface.printLocationDescriptionGeneral(player.getLocation());
+                        }else {userInterface.printWarning(3);}
+                    } 
+                break;
+                case "west": {if (player.getLocation().westExit != null){
+                    player.changeLocation(player.getLocation().westExit);
+                    userInterface.printLocationDescriptionGeneral(player.getLocation());
+                        }else {userInterface.printWarning(3);}
+                    } 
+                break;
+                case "n": {if (player.getLocation().northExit != null){
+                    player.changeLocation(player.getLocation().northExit);
+                    userInterface.printLocationDescriptionGeneral(player.getLocation());
+                        }else {userInterface.printWarning(3);}
+                    } 
+                break;
+                case "e": {if (player.getLocation().eastExit != null){
+                    player.changeLocation(player.getLocation().eastExit);
+                    userInterface.printLocationDescriptionGeneral(player.getLocation());
+                        }else {userInterface.printWarning(3);}
+                    } 
+                break;
+                case "s": {if (player.getLocation().southExit != null){
+                    player.changeLocation(player.getLocation().southExit);
+                    userInterface.printLocationDescriptionGeneral(player.getLocation());
+                        }else {userInterface.printWarning(3);}
+                    } 
+                break;
+                case "w": {if (player.getLocation().westExit != null){
+                    player.changeLocation(player.getLocation().westExit);
+                    userInterface.printLocationDescriptionGeneral(player.getLocation());
+                        }else {userInterface.printWarning(3);}
+                    } 
+                break;
+                case "examine": {userInterface.printItemDescription(inventory);}
+                break;
                 case "quit": { if (userInput.length == 1){
                     userInterface.runQuitScreen();
                     System.exit(0);
@@ -125,6 +175,7 @@ public class DarkYoung {
         */
         //eliminates non-alphanumeric characters from str
         str = str.replaceAll("[^a-zA-Z0-9 ]", "");
+        
         //create string array and divide str into array
 	String[] strArray = str.split(" ");
         /*if the entered string is more than 5 words, return null
@@ -162,7 +213,7 @@ public class DarkYoung {
            
     }
     
-    String[] validateCommand(String str, Interface uI){
+    String[] validateCommand(String str, Interface uI, Items inventory){
     String[] strArray = this.parseInput(str, uI);
         boolean isValid = false;
         if (strArray[0] != null){
@@ -181,6 +232,52 @@ public class DarkYoung {
                         if ( strArray[1].matches ("north|south|east|west|n|s|e|w")){
                             isValid = true;
                         }else {uI.printWarning(1);}  
+                    }
+                }
+                break;
+                case "north": { if (strArray.length == 1){
+                        isValid = true;
+                        } else {uI.printWarning(1);}
+                }
+                break;
+                case "east": { if (strArray.length == 1){
+                        isValid = true;
+                        } else {uI.printWarning(1);}
+                }
+                break;
+                case "south": { if (strArray.length == 1){
+                        isValid = true;
+                        } else {uI.printWarning(1);}
+                }
+                break;
+                case "west": { if (strArray.length == 1){
+                        isValid = true;
+                        } else {uI.printWarning(1);}
+                }
+                break;
+                case "n": { if (strArray.length == 1){
+                        isValid = true;
+                        } else {uI.printWarning(1);}
+                }
+                break;
+                case "e": { if (strArray.length == 1){
+                        isValid = true;
+                        } else {uI.printWarning(1);}
+                }
+                break;
+                case "s": { if (strArray.length == 1){
+                        isValid = true;
+                        } else {uI.printWarning(1);}
+                }
+                break;
+                case "w": { if (strArray.length == 1){
+                        isValid = true;
+                        } else {uI.printWarning(1);}
+                }
+                break;
+                //need to add verification that item is in inventory of player or room
+                case "examine": { if (strArray.length ==2 && strArray[1].equals(inventory.getName())){
+                       isValid = true;
                     }
                 }
                 break;

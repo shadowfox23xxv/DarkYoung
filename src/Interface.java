@@ -52,6 +52,10 @@ public class Interface {
      public void printLocationDescription(Locations current){
         System.out.println(current.getRoomDescription());
     }
+    
+    public void printItemDescription(Items item){
+        System.out.println(item.getDescription());
+    }
      
     public void showPlayerHealth(Player player){
         System.out.println("Your health is " + player.getHealth() + "/" + player.getMaxHealth());

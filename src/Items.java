@@ -46,9 +46,12 @@ public class Items{
     String getName(){
         return name;
     }
+    String getDescription(){
+        return description;
+    }
     
     //constructor
-    public Items(String str, boolean pick, boolean throwable, boolean swing, boolean use, boolean prop, int w){
+    public Items(String str, boolean pick, boolean throwable, boolean swing, boolean use, boolean prop, int w, String desc){
         name = str;
         canPickUp = pick;
         canThrow = throwable;
@@ -56,14 +59,15 @@ public class Items{
         canUse = use;
         isProp = prop;
         weight = w;
+        description = desc;
     }
     //item generation-----------------------------------------------------------
     static Items generateNote(){
-        Items note = new Items("Note", true, false, false, false, false, 0);
+        Items note = new Items("note", true, false, false, false, false, 0, "A small piece of crumpled paper with some writting on it.  It's hard to read, but it appears to be some kind of warning...");
         return note;
     }
     static Items generateFlashLight(){
-        Items flashLight = new Items("Flash light", true, true, true, true, false, 2);
+        Items flashLight = new Items("flashlight", true, true, true, true, false, 2, "A plan flashlight, with a black chrome finish.");
         return flashLight;
     }
 }
