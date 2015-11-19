@@ -49,6 +49,15 @@ public class Script {
             default: return ("Invalid Command option not available");
         }
     }
+    
+    //debug command is not recognized
+    public String unrecognizedDebugCommandText(int x){
+        switch (x){
+            case 1: return("The Void does not understand, you cheater....");
+            //break statement removed as unreachable
+            default: return ("Invalid debug command option not available");
+        }
+    }
 	
     //Input does not  meet parser requirements(too long, or symbols)
     public String inputInvalidText(int x){
@@ -66,7 +75,9 @@ public class Script {
             //break statement removed as unreachable
             default: return ("Command impossible option not available");
         }
-    }    
+    } 
+    
+    
     
     //Title for quit screen
     public String quitTitle(int x){

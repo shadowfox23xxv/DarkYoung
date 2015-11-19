@@ -42,10 +42,10 @@ Version 0.5
 -goals:add character class. Add player class. Add appropriate commands 
 
 Version 0.6
--goals: add inventory class. Implement inventory class in player class and location class. Add appropriate commands
+-goals: Add item class.
 
 Version 0.7
--goals: Add item class.  add basic items to room and player inventory. Add appropriate commands.
+-goals: add inventory class. Implement inventory class in player class and location class. add basic items to room and player inventory.Add appropriate commands
 
 Version 0.8
 -goals: add container sub-class to item class. Implement container for dropped items in room. Add appropriate commands.

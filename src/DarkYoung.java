@@ -45,18 +45,17 @@ public class DarkYoung {
         userInterface.insertLineBreak(5);
         userInterface.insertDoubleLine();
 //=================================================================================================
-        /*code for debug map.  Can be removed once testing is complete, 
-        or left intact for future debugging.  Suggest making accessible only 
-        while debug mode enabled.
-        */
+        
         //mapBuilder is required as generateDebugMap() is nonstatic. It is not 
         //used beyond this.
         Locations mapBuilder = new Locations();
+        //generates debug map
         Locations[] map = mapBuilder.generateDebugMap();
         Player player = new Player();
-        
-        //currentLocation will be replaced with a similar variable in character class
         player.changeLocation(map[0]); 
+        //test code for items. Can be replaced/removed once inventory class is implemented
+        Items inventory = null;
+        
         userInterface.printLocationDescriptionGeneral(player.getLocation());
         boolean exitCondition = false;
         do{
@@ -102,6 +101,14 @@ public class DarkYoung {
                 break;
                 //debug mode commands
                 case "myhealth": userInterface.showPlayerHealth(player);
+                break;
+                case "givenote": inventory = Items.generateNote();
+                break;
+                case "giveflashlight": inventory = Items.generateFlashLight();
+                break;
+                case "currentitem": if (inventory != null){
+                    userInterface.showCurrentItem(theGame, inventory);
+                } else {userInterface.printWarning(4);}
                 break;
                 default: userInterface.printWarning(1);
                 }   
@@ -180,9 +187,24 @@ public class DarkYoung {
                 //debug mode commands
                 case "myhealth": { if (strArray.length == 1 && debugModeOn == true){
                         isValid = true;
-                        }else {uI.printWarning(1);}
+                        }else {uI.printWarning(4);}
                     }
                 break;
+                case "givenote": { if (strArray.length == 1 && debugModeOn == true){
+                        isValid = true;
+                        }else {uI.printWarning(4);}
+                    }
+                break;
+                case "giveflashlight": { if (strArray.length == 1 && debugModeOn == true){
+                        isValid = true;
+                        }else {uI.printWarning(4);}
+                    }
+                break;
+                case "currentitem": { if (strArray.length == 1 && debugModeOn == true){
+                        isValid = true;
+                        }else {uI.printWarning(4);}
+                    }
+                break; 
                 default: uI.printWarning(1);
             }
         }

@@ -56,6 +56,10 @@ public class Interface {
     public void showPlayerHealth(Player player){
         System.out.println("Your health is " + player.getHealth() + "/" + player.getMaxHealth());
     }
+    
+    public void showCurrentItem(DarkYoung darkyoung, Items item){
+        System.out.println("Current item is " + item.getName());
+    }
 
     //Warnings-------------------------------------------------------------
    //singular warning method to replace warnTooManyWords and warnInvalid
@@ -66,6 +70,8 @@ public class Interface {
             case 2: System.out.println(script.inputInvalidText(1));
             break;
             case 3: System.out.println(script.commandImpossibleText(1));
+            break;
+            case 4: System.out.println(script.unrecognizedDebugCommandText(1));
             break;
             default: System.out.println("Warning option not available");
         }

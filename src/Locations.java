@@ -55,12 +55,12 @@ public class Locations{
         map[0].southExit = map[1];
         map[1].numberOfExits = 2;
         map[1].roomGeneralDescription = "You enter a darkened hallway that extends to the east. There is a door to the north.";
-        map[1].roomDescription = "You enter a darkend hallway that extends to the east. There is a door to the north.";
+        map[1].roomDescription = "You are standing in a darkend hallway that extends to the east. There is a door to the north.";
         map[1].northExit = map[0];
         map[1].eastExit = map[2];
         map[2].numberOfExits = 2;
         map[2].roomGeneralDescription = "You enter a dim hallway that extends to the west. There is a door to the south.";
-        map[2].roomDescription = "You enter a dim hallway that extends to the west. Set at the near end of the hallway is a small, dirty window. There is a door to the south.";
+        map[2].roomDescription = "You are standing in a dim hallway that extends to the west. Set at the near end of the hallway is a small, dirty window. There is a door to the south.";
         map[2].westExit = map[1];
         map[2].southExit = map[3];
         map[3].numberOfExits = 1;
