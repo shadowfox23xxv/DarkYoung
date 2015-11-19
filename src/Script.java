@@ -8,8 +8,12 @@ public class Script {
     public String getTitle(int x){
         int option = x;
             switch (option){
-		case 1: return ("Dark Young");
-		//break statement removed as unreachable
+                case 1: return ("DDD.....A....RRRR....K..K....Y...Y..OO...U....U.N....N...GGGG...................");
+                case 2: return ("D..D...A.A...R...R...K.K......Y.Y..O..O..U....U.NN...N..G.......................");
+                case 3: return ("D...D.A...A..R...R...KK........Y..O....O.U....U.N.N..N.G...GGG..................");
+                case 4: return ("D...D.AAAAA..RRRR....KK........Y..O....O.U....U.N..N.N.G.....G..................");
+                case 5: return ("D..D.A.....A.R....R..K.K.......Y...O..O..U....U.N...NN..G...G...................");
+                case 6: return ("DDD..A.....A.R.....R.K..K......Y....OO....UUUU..N....N...GGG....................");
 		default: return ("Title option not available");
             }
 	

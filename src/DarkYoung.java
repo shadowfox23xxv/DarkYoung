@@ -163,6 +163,7 @@ public class DarkYoung {
                 default: userInterface.printWarning(1);
                 }   
             }
+        userInterface.insertLineBreak(1);
         } while(exitCondition == false);
     }           
 

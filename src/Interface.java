@@ -89,11 +89,19 @@ public class Interface {
     //Formats---------------------------------------------------------------
     //defines and formatts splash screen at start of game
     public void runSplashScreen(){
+        this.insertLineBreak(1);
+        System.out.println(script.getTitle(1));
+        System.out.println(script.getTitle(2));
+        System.out.println(script.getTitle(3));
+        System.out.println(script.getTitle(4));
+        System.out.println(script.getTitle(5));
+        System.out.println(script.getTitle(6));
+        this.insertLineBreak(2);
         System.out.println(script.getSplashScreenText(1));
 	this.insertLineBreak(1);
 	System.out.println(script.getSplashScreenText(2));
 	this.insertLineBreak(3);
-	this.insertLine();
+	this.insertDoubleLine();
 	System.out.println(script.getSplashScreenText(3));
         this.insertLineBreak(1);
         System.out.println(script.getSplashScreenText(4));
@@ -102,10 +110,12 @@ public class Interface {
     
     //Defines and formatts quite screen
     public void runQuitScreen(){
-        this.insertLine();
+        this.insertDoubleLine();
         this.insertLineBreak(1);
-        System.out.println(script.quitTitle(1));
+        this.insertDoubleLine();
         this.insertLineBreak(2);
+        System.out.println(script.quitTitle(1));
+        this.insertLineBreak(1);
         System.out.println(script.quitText(1));
     }
     
