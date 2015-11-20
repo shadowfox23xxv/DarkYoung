@@ -46,11 +46,10 @@ public class DarkYoung {
         userInterface.insertDoubleLine();
 //=================================================================================================
         
-        //mapBuilder is required as generateDebugMap() is nonstatic. It is not 
-        //used beyond this.
+        
         Locations mapBuilder = new Locations();
         //generates debug map
-        Locations[] map = mapBuilder.generateDebugMap();
+        Locations[] map = Locations.generateDebugMap();
         Player player = new Player();
         player.changeLocation(map[0]); 
         //test code for items. Can be replaced/removed once inventory class is implemented

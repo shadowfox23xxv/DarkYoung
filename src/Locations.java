@@ -34,7 +34,7 @@ public class Locations{
     
     //generates the given number of Locations obejcts, with pointers stored in a returned 
     //array.
-    Locations[] createLocations(int x){
+    static Locations[] createLocations(int x){
         int iterate = 0;
         int loopMax = x;
         Locations[] arrayOfLocations = new Locations[x];
@@ -47,7 +47,7 @@ public class Locations{
     }
     
     //build debug map
-    public Locations[] generateDebugMap(){
+    static public Locations[] generateDebugMap(){
         Locations[] map = createLocations(4);
         map[0].numberOfExits = 1;
         map[0].roomGeneralDescription = "You are standing in a small, dimly lit bedroom, with one door to the south, and a window to the north.";
