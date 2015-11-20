@@ -5,69 +5,42 @@
  */
 
 /*
-Item: objects repressenting in game objects. 
-Pickupable, throwable, swingable, useable, on, weight, prop
+Super class for all in game items.
 */
 
-public class Items{
-    //class variables
-    private String name;
-    private boolean canPickUp;
-    private boolean canThrow;
-    private boolean canSwing;
-    private boolean canUse;
-    private boolean isOn = false;
-    private boolean isProp;
-    private int weight;
-    private String description;
-        
+abstract public class Items{
+    //class fields
+    protected int ID;
+    protected String name;
+    protected String generalDescription;
+    protected String detailedDescription;
+    
     //class methods
-    boolean getCanPickUp(){
-        return canPickUp;
-    }
-    boolean getCanThrow(){
-        return canThrow;
-    }
-    boolean getCanSwing(){
-        return canSwing;
-    }
-    boolean getCanUse(){
-        return canUse;
-    }
-    boolean getIsOn(){
-        return isOn;
-    }
-    boolean getIsProp(){
-        return isProp;
-    }
-    int getWeight(){
-        return weight;
-    }
-    String getName(){
-        return name;
-    }
-    String getDescription(){
-        return description;
+    public int getID(){
+        return this.ID;
     }
     
-    //constructor
-    public Items(String str, boolean pick, boolean throwable, boolean swing, boolean use, boolean prop, int w, String desc){
-        name = str;
-        canPickUp = pick;
-        canThrow = throwable;
-        canSwing = swing;
-        canUse = use;
-        isProp = prop;
-        weight = w;
-        description = desc;
+    public String getName(){
+        return this.name;
     }
-    //item generation-----------------------------------------------------------
-    static Items generateNote(){
-        Items note = new Items("note", true, false, false, false, false, 0, "A small piece of crumpled paper with some writting on it.  It's hard to read, but it appears to be some kind of warning...");
-        return note;
+    
+    public String getGeneralDescription(){
+        return this.generalDescription;
     }
-    static Items generateFlashLight(){
-        Items flashLight = new Items("flashlight", true, true, true, true, false, 2, "A plan flashlight, with a black chrome finish.");
-        return flashLight;
+    
+    public String getDetailedDescription(){
+        return this.detailedDescription;
+    }
+    //abstract method. Implementation should return a copy of the Object calling it
+    abstract Items getCopy(); 
+    //default constructor
+    public Items(){
+    }
+    //copy constructor
+    public Items(Items item){
+    this.ID = item.ID;
+    this.name = item.name;
+    this.generalDescription = item.generalDescription;
+    this.detailedDescription = item.detailedDescription;
     }
 }

@@ -19,7 +19,7 @@ public class Script {
     private String splashScreen1;
     private String splashScreen2;
     private String splashScreen3;
-    private  String splashScreen4;
+    private String splashScreen4;
     private String unrecognizedCommand1;
     private String unrecognizedDebugCommand1;
     private String inputInvalid1;
@@ -27,7 +27,7 @@ public class Script {
     private String quitTitle1;
     private String quit1;
     private String debug1;
-    private  String debug2;
+    private String debug2;
     
     public Script(){
 	String[] reader = new String[50];

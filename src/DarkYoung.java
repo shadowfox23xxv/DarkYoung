@@ -4,37 +4,41 @@
  * @author bleakbriar
  */
 public class DarkYoung {
+    //class fields
     static final int MAX_INPUT = 5;
     public boolean debugModeOn = false;
-    
+    Interface userInterface;
+    Player player;
+    Items inventory = null;
+    Items[] masterInventory;
     public static void main(String arg[]){
         //instantiate game object
         DarkYoung theGame = new DarkYoung();
         //instantiate interface object 
-        Interface userInterface = new Interface();
+        theGame.userInterface = new Interface();
         	
 //==================================================================================================
         //!!!!Beginning of actual code for splash screen menu!!!!!
         //!!!!!!!!!!!!!test again!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        userInterface.runSplashScreen();
+        theGame.userInterface.runSplashScreen();
         boolean exitMenuCondition = false;
         do {
-            String[] testInputMenu = theGame.validateCommandMenu(userInterface.getInput(), userInterface);
+            String[] testInputMenu = theGame.validateCommandMenu(theGame.userInterface.getInput());
             if (testInputMenu[0] != null){
                 switch (testInputMenu[0]){
                     case "start": exitMenuCondition = true;
                     break;
                     case "debug": {if (theGame.debugModeOn == true){
                         theGame.debugModeOn = false;
-                        userInterface.debugMode(2);
+                        theGame.userInterface.debugMode(2);
                         } else {
                         theGame.debugModeOn = true;
-                        userInterface.debugMode(1);
+                        theGame.userInterface.debugMode(1);
                         }
                     }
                     break;
                     case "quit": {
-                        userInterface.runQuitScreen();
+                        theGame.userInterface.runQuitScreen();
                         System.exit(0);
                     }
                     break;
@@ -42,133 +46,35 @@ public class DarkYoung {
             } else { System.out.println("Try again...");}
         } while(exitMenuCondition == false);
         System.out.println("The journey begins...");
-        userInterface.insertLineBreak(5);
-        userInterface.insertDoubleLine();
+        theGame.userInterface.insertLineBreak(5);
+        theGame.userInterface.insertDoubleLine();
 //=================================================================================================
         
         
         Locations mapBuilder = new Locations();
         //generates debug map
         Locations[] map = Locations.generateDebugMap();
-        Player player = new Player();
-        player.changeLocation(map[0]); 
-        //test code for items. Can be replaced/removed once inventory class is implemented
-        Items inventory = null;
+        theGame.player = new Player();
+        theGame.player.changeLocation(map[0]); 
+        theGame.masterInventory = theGame.addInventoryArrays(Collectible.generateCollectibleItems(), Props.generatePropItems());
         
-        userInterface.printLocationDescriptionGeneral(player.getLocation());
+        
+        theGame.userInterface.printLocationDescriptionGeneral(theGame.player.getLocation());
         boolean exitCondition = false;
         do{
-            String[] userInput = theGame.validateCommand(userInterface.getInput(), userInterface, inventory);
+            String[] userInput = theGame.validateCommand(theGame.userInterface.getInput(), theGame.userInterface, theGame.inventory);
             if (userInput[0] != null){
-                switch (userInput[0]){
-                case "look": { if (userInput[1].equals("around")){
-                    userInterface.printLocationDescription(player.getLocation());
-                    }
-                }
-                break;
-                case "walk": {if (userInput[1].equals("north") || userInput[1].equals("n")){
-                        if (player.getLocation().northExit != null){
-                        player.changeLocation(player.getLocation().northExit);
-                        userInterface.printLocationDescriptionGeneral(player.getLocation());
-                        }else {userInterface.printWarning(3);}
-                    } 
-                    if (userInput[1].equals("east") || userInput[1].equals("e")){
-                        if (player.getLocation().eastExit != null){
-                        player.changeLocation(player.getLocation().eastExit);
-                        userInterface.printLocationDescriptionGeneral(player.getLocation());
-                        }else {userInterface.printWarning(3);}
-                    }
-                        if (userInput[1].equals("south") || userInput[1].equals("s")){
-                            if (player.getLocation().southExit != null){
-                            player.changeLocation(player.getLocation().southExit);
-                            userInterface.printLocationDescriptionGeneral(player.getLocation());
-                            }else {userInterface.printWarning(3);}
-                        } 
-                        if (userInput[1].equals("west") || userInput[1].equals("w")){
-                            if (player.getLocation().westExit != null){
-                            player.changeLocation(player.getLocation().westExit);
-                            userInterface.printLocationDescriptionGeneral(player.getLocation());
-                            }else {userInterface.printWarning(3);}
-                        }
-                    } 
-                break; 
-                case "north": {if (player.getLocation().northExit != null){
-                    player.changeLocation(player.getLocation().northExit);
-                    userInterface.printLocationDescriptionGeneral(player.getLocation());
-                        }else {userInterface.printWarning(3);}
-                    } 
-                break;
-                case "east": {if (player.getLocation().eastExit != null){
-                    player.changeLocation(player.getLocation().eastExit);
-                    userInterface.printLocationDescriptionGeneral(player.getLocation());
-                        }else {userInterface.printWarning(3);}
-                    } 
-                break;
-                case "south": {if (player.getLocation().southExit != null){
-                    player.changeLocation(player.getLocation().southExit);
-                    userInterface.printLocationDescriptionGeneral(player.getLocation());
-                        }else {userInterface.printWarning(3);}
-                    } 
-                break;
-                case "west": {if (player.getLocation().westExit != null){
-                    player.changeLocation(player.getLocation().westExit);
-                    userInterface.printLocationDescriptionGeneral(player.getLocation());
-                        }else {userInterface.printWarning(3);}
-                    } 
-                break;
-                case "n": {if (player.getLocation().northExit != null){
-                    player.changeLocation(player.getLocation().northExit);
-                    userInterface.printLocationDescriptionGeneral(player.getLocation());
-                        }else {userInterface.printWarning(3);}
-                    } 
-                break;
-                case "e": {if (player.getLocation().eastExit != null){
-                    player.changeLocation(player.getLocation().eastExit);
-                    userInterface.printLocationDescriptionGeneral(player.getLocation());
-                        }else {userInterface.printWarning(3);}
-                    } 
-                break;
-                case "s": {if (player.getLocation().southExit != null){
-                    player.changeLocation(player.getLocation().southExit);
-                    userInterface.printLocationDescriptionGeneral(player.getLocation());
-                        }else {userInterface.printWarning(3);}
-                    } 
-                break;
-                case "w": {if (player.getLocation().westExit != null){
-                    player.changeLocation(player.getLocation().westExit);
-                    userInterface.printLocationDescriptionGeneral(player.getLocation());
-                        }else {userInterface.printWarning(3);}
-                    } 
-                break;
-                case "examine": {userInterface.printItemDescription(inventory);}
-                break;
-                case "quit": { if (userInput.length == 1){
-                    userInterface.runQuitScreen();
-                    System.exit(0);
-                        }
-                    }   
-                break;
-                //debug mode commands
-                case "myhealth": userInterface.showPlayerHealth(player);
-                break;
-                case "givenote": inventory = Items.generateNote();
-                break;
-                case "giveflashlight": inventory = Items.generateFlashLight();
-                break;
-                case "currentitem": if (inventory != null){
-                    userInterface.showCurrentItem(theGame, inventory);
-                } else {userInterface.printWarning(4);}
-                break;
-                default: userInterface.printWarning(1);
-                }   
+                theGame.processCommand(userInput);
+                theGame.userInterface.insertLineBreak(1);
             }
-        userInterface.insertLineBreak(1);
         } while(exitCondition == false);
-    }           
+    }
+
 
 //--------------------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------------------
-    String[] parseInput(String str, Interface uI){
+    //class methods
+    String[] parseInput(String str){
 	/**Separates string from user into string array
         * Returns NULL in [0] if input doesn't meet parser
         * requirements(max length, no punctuation)
@@ -182,7 +88,7 @@ public class DarkYoung {
         and make method call to inform player
         */
 	if (strArray.length > MAX_INPUT) {
-            uI.printWarning(2);
+            userInterface.printWarning(2);
             String[] returnNull = new String[1];
             returnNull[0] = null;
             return returnNull;
@@ -190,8 +96,8 @@ public class DarkYoung {
 	return strArray;
     }
         
-    String[] validateCommandMenu(String str, Interface uI){
-        String[] strArray = this.parseInput(str, uI);
+    String[] validateCommandMenu(String str){
+        String[] strArray = this.parseInput(str);
         boolean isValid = false;
         if (strArray[0] != null){
             switch (strArray[0]){
@@ -201,7 +107,7 @@ public class DarkYoung {
                 break;
                 case "debug": isValid = true;
                 break;
-                default: uI.printWarning(1);
+                default: userInterface.printWarning(1);
             }
         }
         if (isValid){
@@ -214,7 +120,7 @@ public class DarkYoung {
     }
     
     String[] validateCommand(String str, Interface uI, Items inventory){
-    String[] strArray = this.parseInput(str, uI);
+    String[] strArray = this.parseInput(str);
         boolean isValid = false;
         if (strArray[0] != null){
             switch (strArray[0]){
@@ -311,5 +217,152 @@ public class DarkYoung {
             strArray[0] = null;
             return strArray;
         } 
-    }            
+    }  
+    
+    
+    
+    public void processCommand(String[] userInput){
+        switch (userInput[0]){
+                case "look": { if (userInput[1].equals("around")){
+                    userInterface.printLocationDescription(player.getLocation());
+                    }
+                }
+                break;
+                case "walk": {if (userInput[1].equals("north") || userInput[1].equals("n")){
+                        if (player.getLocation().northExit != null){
+                        player.changeLocation(player.getLocation().northExit);
+                        userInterface.printLocationDescriptionGeneral(player.getLocation());
+                        }else {userInterface.printWarning(3);}
+                    } 
+                    if (userInput[1].equals("east") || userInput[1].equals("e")){
+                        if (player.getLocation().eastExit != null){
+                        player.changeLocation(player.getLocation().eastExit);
+                        userInterface.printLocationDescriptionGeneral(player.getLocation());
+                        }else {userInterface.printWarning(3);}
+                    }
+                        if (userInput[1].equals("south") || userInput[1].equals("s")){
+                            if (player.getLocation().southExit != null){
+                            player.changeLocation(player.getLocation().southExit);
+                            userInterface.printLocationDescriptionGeneral(player.getLocation());
+                            }else {userInterface.printWarning(3);}
+                        } 
+                        if (userInput[1].equals("west") || userInput[1].equals("w")){
+                            if (player.getLocation().westExit != null){
+                            player.changeLocation(player.getLocation().westExit);
+                            userInterface.printLocationDescriptionGeneral(player.getLocation());
+                            }else {userInterface.printWarning(3);}
+                        }
+                    } 
+                break; 
+                case "north": {if (player.getLocation().northExit != null){
+                    player.changeLocation(player.getLocation().northExit);
+                    userInterface.printLocationDescriptionGeneral(player.getLocation());
+                        }else {userInterface.printWarning(3);}
+                    } 
+                break;
+                case "east": {if (player.getLocation().eastExit != null){
+                    player.changeLocation(player.getLocation().eastExit);
+                    userInterface.printLocationDescriptionGeneral(player.getLocation());
+                        }else {userInterface.printWarning(3);}
+                    } 
+                break;
+                case "south": {if (player.getLocation().southExit != null){
+                    player.changeLocation(player.getLocation().southExit);
+                    userInterface.printLocationDescriptionGeneral(player.getLocation());
+                        }else {userInterface.printWarning(3);}
+                    } 
+                break;
+                case "west": {if (player.getLocation().westExit != null){
+                    player.changeLocation(player.getLocation().westExit);
+                    userInterface.printLocationDescriptionGeneral(player.getLocation());
+                        }else {userInterface.printWarning(3);}
+                    } 
+                break;
+                case "n": {if (player.getLocation().northExit != null){
+                    player.changeLocation(player.getLocation().northExit);
+                    userInterface.printLocationDescriptionGeneral(player.getLocation());
+                        }else {userInterface.printWarning(3);}
+                    } 
+                break;
+                case "e": {if (player.getLocation().eastExit != null){
+                    player.changeLocation(player.getLocation().eastExit);
+                    userInterface.printLocationDescriptionGeneral(player.getLocation());
+                        }else {userInterface.printWarning(3);}
+                    } 
+                break;
+                case "s": {if (player.getLocation().southExit != null){
+                    player.changeLocation(player.getLocation().southExit);
+                    userInterface.printLocationDescriptionGeneral(player.getLocation());
+                        }else {userInterface.printWarning(3);}
+                    } 
+                break;
+                case "w": {if (player.getLocation().westExit != null){
+                    player.changeLocation(player.getLocation().westExit);
+                    userInterface.printLocationDescriptionGeneral(player.getLocation());
+                        }else {userInterface.printWarning(3);}
+                    } 
+                break;
+                case "examine": {userInterface.printItemDescriptionDetailed(inventory);}
+                break;
+                case "quit": { if (userInput.length == 1){
+                    userInterface.runQuitScreen();
+                    System.exit(0);
+                        }
+                    }   
+                break;
+                //debug mode commands
+                case "myhealth": userInterface.showPlayerHealth(player);
+                break;
+                
+                case "givenote": {if(checkMasterInventory("note")){
+                    inventory = copyFromMasterInventory("note");
+                    }
+                }
+                break;
+                /*case "giveflashlight": inventory = Items.generateFlashLight();
+                break;
+                */
+                case "currentitem": if (inventory != null){
+                    userInterface.showCurrentItem(inventory);
+                } else {userInterface.printWarning(4);}
+                break;
+                default: userInterface.printWarning(1);
+                }   
+            }
+    
+    public Items[] addInventoryArrays(Items[] a, Items[] b){
+        int aLen = a.length;
+        int bLen = b.length;
+        Items[] c= new Items[aLen+bLen];
+        System.arraycopy(a, 0, c, 0, aLen);
+        System.arraycopy(b, 0, c, aLen, bLen);
+        return c;
+    }
+    
+    public boolean checkMasterInventory(String str){
+        int length = masterInventory.length;
+        int iterator = 0;
+        while (iterator < length){
+            String name = masterInventory[iterator].getName();
+            if (name.equals(str)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public Items copyFromMasterInventory(String str){
+        Items itemToReturn = null;
+        int length = masterInventory.length;
+        int iterator = 0;
+        while (iterator < length){
+            String name = masterInventory[iterator].getName();
+            if (name.equals(str)){
+                itemToReturn = masterInventory[iterator].getCopy();
+            }
+            iterator += 1;
+        }
+        return itemToReturn;
+    }
 }
+        

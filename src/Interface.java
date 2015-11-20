@@ -53,15 +53,19 @@ public class Interface {
         System.out.println(current.getRoomDescription());
     }
     
-    public void printItemDescription(Items item){
-        System.out.println(item.getDescription());
+    public void printItemDescriptionGeneral(Items item){
+        System.out.println(item.getGeneralDescription());
+    }
+    
+    public void printItemDescriptionDetailed(Items item){
+        System.out.println(item.getDetailedDescription());
     }
      
     public void showPlayerHealth(Player player){
         System.out.println("Your health is " + player.getHealth() + "/" + player.getMaxHealth());
     }
     
-    public void showCurrentItem(DarkYoung darkyoung, Items item){
+    public void showCurrentItem(Items item){
         System.out.println("Current item is " + item.getName());
     }
 
