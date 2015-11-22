@@ -3,15 +3,15 @@ version 0.6-intervening phase
 
 Goals: Before progressing into phase 7, the decision has been made to review and rewrite sections of the existing code to make future development easier, as well as to bring the handling of the game more under the object-oriented programming paradigm, where-as it now more resembles OO/functinal programming hybrid. The following changes will be made before further work on developing the game commences:
 
--REBUILD OF ITEM HANDLING
----Items class will be rewritten as a possibly virtual super class.
----subclasses will be created for collectible items, props(furniture, ect...), containers,
----add int ID field for each item.  This allows items with the same name to have different information.  Example: keys.  Shows as key, but has different descpriptions and uses.
+XXX-REBUILD OF ITEM HANDLING-XXX
+-xxxItems class will be rewritten as a possibly virtual super class.
+xxx-subclasses will be created for collectible items, props(furniture, ect...), containers,
+xxx-add int ID field for each item.  This allows items with the same name to have different information.  Example: keys.  Shows as key, but has different descpriptions and uses.
 ---add menu to Interface should a command be entered for items with same name. Example: examine key while in player inventory.  Displays numbered basic description of each key and asks player to select which key they wish to examine(show detailed description)
----add general and detailed description of each item.  General description can be used in above menu, as well as describing item when it is in a location. Detailed description given when examine command is used.
----a static method in each subclass is required to read from it's associated file and generate an instance of all in game objects
----Addition of an Items type array in DarkYoung class to hold an instance of all in game objects.  Will be replaced in phase seven with an inventory object.
----Addition of method in Darkyoung to call generation method of each Items subclass and add returned array of object references to inventory stand in
+xxx-add general and detailed description of each item.  General description can be used in above menu, as well as describing item when it is in a location. Detailed description given when examine command is used.
+xxx-a static method in each subclass is required to read from it's associated file and generate an instance of all in game objects
+xxx-Addition of an Items type array in DarkYoung class to hold an instance of all in game objects.  Will be replaced in phase seven with an inventory object.
+xxx-Addition of method in Darkyoung to call generation method of each Items subclass and add returned array of object references to inventory stand in
 -REBUILD OF LOCATION HANDLING
 ---replace numberOfExits with boolean hasXExit where x is each possible direction
 ---Add x,y,z,i coordinates to each location in file

@@ -25,22 +25,10 @@ public class Collectible extends Items{
                 String[] splitter = line.split(" ");
                 int i = Integer.parseInt(splitter[0]);
                 String n = splitter [1];
-                boolean s;
-                if (splitter[2].equals("true")){
-                    s = true;
-                }else {s = false;}
-                boolean t;
-                if (splitter[3].equals("true")){
-                    t = true;
-                }else {t = false;}
-                boolean u;
-                if (splitter[4].equals("true")){
-                    u = true;
-                }else {u = false;}
-                boolean o;
-                if (splitter[5].equals("true")){
-                    o = true;
-                }else {o = false;}
+                boolean s = splitter[2].equals("true");
+                boolean t = splitter[3].equals("true");
+                boolean u = splitter[4].equals("true");
+                boolean o = splitter[5].equals("true");
                 int w = Integer.parseInt(splitter[6]);
                 String g = bufferedReader.readLine();
                 String d = bufferedReader.readLine();

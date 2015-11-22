@@ -3,19 +3,45 @@
  * Defines objects to represent individual location cells
  * @author bleakbriar
  */
-
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//removed z and i coordinate realted code.  Unnecessary for debug map
+//and complicating debug process.
+//Needs to be re-added later
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 public class Locations{
     //member variables
     static int totalNumberOfRooms = 0;
-    int numberOfExits;
+    //boolean flags to show is exit exists
+    boolean hasNorthExit = false;
+    boolean hasEastExit = false;
+    boolean hasSouthExit = false;
+    boolean hasWestExit = false;
+    boolean hasInOutExit = false;
+    boolean hasUpDownExit = false;
+    //boolean flags to show if exit is inaccessible
+    boolean northIsLocked = false;
+    boolean eastIsLocked = false;
+    boolean southIsLocked = false;
+    boolean westIsLocked = false;
+    boolean inOutIsLocked = false;
+    boolean upDownIsLocked = false;
+    //east/west coordinate
+    int xCoordinate = 0;
+    //north/south coordinate
+    int yCoordinate = 0;
+    
+    //holds reference to location object in given direction
     Locations northExit = null;
     Locations eastExit = null;
     Locations southExit = null;
     Locations westExit = null;
-    Locations upExit = null;
-    Locations downExit = null;
+ 
     String roomGeneralDescription = "Blank";
-    String roomDescription = "Blank";
+    String roomDetailedDescription = "Blank";
     
 
     //member methods
@@ -23,50 +49,131 @@ public class Locations{
         return this.roomGeneralDescription;
     }    
     
-    String getRoomDescription(){
-        return this.roomDescription;
+    String getRoomDetailedDescription(){
+        return this.roomDetailedDescription;
     }
     
-    //default constuctor
-    public Locations(){
+    //Constructor
+    public Locations(boolean hne, boolean hee, boolean hse, boolean hwe, boolean nil, boolean eil, boolean sil, boolean wil, int x, int y, String rgd, String rdd){
         totalNumberOfRooms += 1;
+        hasNorthExit = hne;
+        hasEastExit = hee;
+        hasSouthExit = hse;
+        hasWestExit = hwe;
+        northIsLocked = nil;
+        eastIsLocked = eil;
+        southIsLocked = sil;
+        westIsLocked = wil;
+        xCoordinate = x;    
+        yCoordinate = y; 
+        roomGeneralDescription = rgd;
+        roomDetailedDescription = rdd;
     }
     
-    //generates the given number of Locations obejcts, with pointers stored in a returned 
-    //array.
-    static Locations[] createLocations(int x){
-        int iterate = 0;
-        int loopMax = x;
-        Locations[] arrayOfLocations = new Locations[x];
-        while (iterate < loopMax){
-            int index = iterate;
-            arrayOfLocations[index] = new Locations();
-            iterate += 1;
+    //generates the Locations for debug map
+   static private Locations[] generateDebugMapLocations(){
+        Locations[] locationSet = new Locations[4];
+        try{
+            File file = new File("src/debugMap.txt");
+            FileReader fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            int iterator = 0;
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] splitter = line.split(" ");
+                boolean hne = splitter[0].equals("true");
+                boolean hee = splitter[1].equals("true");
+                boolean hse = splitter[2].equals("true");
+                boolean hwe = splitter[3].equals("true");
+                boolean nil = splitter[4].equals("true");
+                boolean eil = splitter[5].equals("true");
+                boolean sil = splitter[6].equals("true");
+                boolean wil = splitter[7].equals("true");   
+                int x = Integer.parseInt(splitter[8]);
+                int y = Integer.parseInt(splitter[9]);
+                String rgd = bufferedReader.readLine();
+                String rdd = bufferedReader.readLine();
+                Locations newLocation = new Locations(hne, hee, hse, hwe, nil, eil, sil, wil, x, y, rgd, rdd); 
+                locationSet[iterator] = newLocation;
+                iterator += 1;
+            }
+            fileReader.close();
+        } catch (IOException e) {
+			e.printStackTrace();
         }
-        return arrayOfLocations;
-    }
+        return locationSet;
+   }
     
-    //build debug map
+    //build debug map by linking locations created by generateDebugMapLocations()
     static public Locations[] generateDebugMap(){
-        Locations[] map = createLocations(4);
-        map[0].numberOfExits = 1;
-        map[0].roomGeneralDescription = "You are standing in a small, dimly lit bedroom, with one door to the south, and a window to the north.";
-        map[0].roomDescription = "The room is dirty. Dust covers the bed and small dresser inside.  The only light comes from the moon outside, shining through a tattered curtain hung over the window.  There is a single door to the south.";
-        map[0].southExit = map[1];
-        map[1].numberOfExits = 2;
-        map[1].roomGeneralDescription = "You enter a darkened hallway that extends to the east. There is a door to the north.";
-        map[1].roomDescription = "You are standing in a darkend hallway that extends to the east. There is a door to the north.";
-        map[1].northExit = map[0];
-        map[1].eastExit = map[2];
-        map[2].numberOfExits = 2;
-        map[2].roomGeneralDescription = "You enter a dim hallway that extends to the west. There is a door to the south.";
-        map[2].roomDescription = "You are standing in a dim hallway that extends to the west. Set at the near end of the hallway is a small, dirty window. There is a door to the south.";
-        map[2].westExit = map[1];
-        map[2].southExit = map[3];
-        map[3].numberOfExits = 1;
-        map[3].roomGeneralDescription = "You enter a den, with simple furniture.  A couch, an endtable, and a fireplace. There is a door to the north, and a thicker, heavier door to the south.";
-        map[3].roomDescription = "It's a simple room, dusty and sprinkled with cobwebs.  The couch and endtable looks like it hasn't been used in ages.  The fireplace is dark, and the southern door is heavily boarded.";
-        map[3].northExit = map[2];
-        return map;
+        Locations[] locArray = generateDebugMapLocations();
+        int length = locArray.length;
+        int iterator = 0;
+        while (iterator < length){
+            Locations check = locArray[iterator]; 
+            if (check.hasNorthExit){
+                boolean keepLooping = true;
+                int internalIterator = 0;
+                while (keepLooping && internalIterator < locArray.length){
+                    Locations checkAgainst = locArray[internalIterator];
+                    int y = checkAgainst.yCoordinate - 1;
+                    if (check.xCoordinate == checkAgainst.xCoordinate && check.yCoordinate == y){
+                        check.northExit = checkAgainst;
+                        keepLooping = false;
+                    }else {internalIterator += 1;}    
+                }
+                //prints to screen which locations are having issues in linking process
+                if (internalIterator >= locArray.length){
+                    System.out.println("Map generation failed at location " + iterator);
+                }
+            }
+            if (check.hasEastExit){
+                boolean keepLooping = true;
+                int internalIterator = 0;
+                while (keepLooping && internalIterator < locArray.length){
+                    Locations checkAgainst = locArray[internalIterator];
+                    int x = checkAgainst.xCoordinate - 1;
+                    if (check.xCoordinate == x && check.yCoordinate == checkAgainst.yCoordinate){
+                        check.eastExit = checkAgainst;
+                        keepLooping = false;
+                    }else {internalIterator += 1;}    
+                }
+                if (internalIterator >= locArray.length){
+                    System.out.println("Map generation failed at location " + iterator);
+                }
+            }
+            if (check.hasSouthExit){
+                boolean keepLooping = true;
+                int internalIterator = 0;
+                while (keepLooping && internalIterator < locArray.length){
+                    Locations checkAgainst = locArray[internalIterator];
+                    int y = checkAgainst.yCoordinate + 1;
+                    if (check.xCoordinate == checkAgainst.xCoordinate && check.yCoordinate == y){
+                        check.southExit = checkAgainst;
+                        keepLooping = false;
+                    }else {internalIterator += 1;}    
+                }
+                if (internalIterator >= locArray.length){
+                    System.out.println("Map generation failed at location " + iterator);
+                }
+            }    
+            if (check.hasWestExit){
+                boolean keepLooping = true;
+                int internalIterator = 0;
+                while (keepLooping && internalIterator < locArray.length){
+                    Locations checkAgainst = locArray[internalIterator];
+                    int x = checkAgainst.xCoordinate + 1;
+                    if (check.xCoordinate == x && check.yCoordinate == checkAgainst.yCoordinate){
+                        check.westExit = checkAgainst;
+                        keepLooping = false;
+                    }else {internalIterator += 1;}    
+                }
+                if (internalIterator >= locArray.length){
+                    System.out.println("Map generation failed at location " + iterator);
+                }
+            }
+            iterator += 1;
+        }
+        return locArray;
     }    
 }

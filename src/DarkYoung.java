@@ -51,7 +51,7 @@ public class DarkYoung {
 //=================================================================================================
         
         
-        Locations mapBuilder = new Locations();
+        
         //generates debug map
         Locations[] map = Locations.generateDebugMap();
         theGame.player = new Player();

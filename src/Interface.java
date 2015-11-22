@@ -50,7 +50,7 @@ public class Interface {
     }    
     
      public void printLocationDescription(Locations current){
-        System.out.println(current.getRoomDescription());
+        System.out.println(current.getRoomDetailedDescription());
     }
     
     public void printItemDescriptionGeneral(Items item){
