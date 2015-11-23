@@ -10,7 +10,7 @@ public class Character{
     private int maxHealth = 0;
     private String name = "Bob";
     private Locations currentLocation;
-    //!!!!!!!!!!!!!!!!!!!add inventory
+    private Inventory inventory;
     
     //class methods
     int getHealth(){
@@ -26,6 +26,9 @@ public class Character{
     String getName(){
         return name;
     }
+    void setName(String newName){
+        name = newName;
+    }
     
     Locations getLocation(){
         return currentLocation;
@@ -35,5 +38,35 @@ public class Character{
         currentLocation = loc;
     }
     
-    //!!!!!!!!!!!!!add methods related to inventory
+    public void addItem(Items x){
+        inventory.addItem(x);
+    }
+    
+    public void removeItem(Items x){
+        inventory.removeItem(x);
+    }
+    
+    public void removeItem(String name){
+        inventory.removeItem(name);
+    }
+    
+    public Items getItem(String name){
+        return inventory.getItem(name);
+    }
+    
+    
+    
+    
+    String[] listItems(){
+        String[] returnArray = this.inventory.listItems();
+        return returnArray;
+    }
+    
+    
+    
+    //constructor
+    public void Player(){
+    inventory = new Inventory();
+    
+    }
 }

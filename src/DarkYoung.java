@@ -8,14 +8,12 @@ public class DarkYoung {
     static final int MAX_INPUT = 5;
     public boolean debugModeOn = false;
     Interface userInterface;
+    Inventory masterInventory;
     Player player;
-    Items inventory = null;
-    Items[] masterInventory;
     public static void main(String arg[]){
         //instantiate game object
         DarkYoung theGame = new DarkYoung();
-        //instantiate interface object 
-        theGame.userInterface = new Interface();
+        
         	
 //==================================================================================================
         //!!!!Beginning of actual code for splash screen menu!!!!!
@@ -54,15 +52,14 @@ public class DarkYoung {
         
         //generates debug map
         Locations[] map = Locations.generateDebugMap();
-        theGame.player = new Player();
-        theGame.player.changeLocation(map[0]); 
-        theGame.masterInventory = theGame.addInventoryArrays(Collectible.generateCollectibleItems(), Props.generatePropItems());
+        theGame.player.changeLocation(map[0]);
         
+       
         
         theGame.userInterface.printLocationDescriptionGeneral(theGame.player.getLocation());
         boolean exitCondition = false;
         do{
-            String[] userInput = theGame.validateCommand(theGame.userInterface.getInput(), theGame.userInterface, theGame.inventory);
+            String[] userInput = theGame.validateCommand();
             if (userInput[0] != null){
                 theGame.processCommand(userInput);
                 theGame.userInterface.insertLineBreak(1);
@@ -119,70 +116,70 @@ public class DarkYoung {
            
     }
     
-    String[] validateCommand(String str, Interface uI, Items inventory){
-    String[] strArray = this.parseInput(str);
+    String[] validateCommand(){
+    String[] strArray = this.parseInput(userInterface.getInput());
         boolean isValid = false;
         if (strArray[0] != null){
             switch (strArray[0]){
                 case "look": { if (strArray.length == 2 && strArray[1].equals("around")){
                     isValid = true;
-                    }else {uI.printWarning(1);}
+                    }else {userInterface.printWarning(1);}
                 }    
                 break;
                 case "quit": { if (strArray.length == 1){
                     isValid = true;
-                    }else {uI.printWarning(1);}
+                    }else {userInterface.printWarning(1);}
                 }
                 break;
                 case "walk": { if (strArray.length == 2){
                         if ( strArray[1].matches ("north|south|east|west|n|s|e|w")){
                             isValid = true;
-                        }else {uI.printWarning(1);}  
+                        }else {userInterface.printWarning(1);}  
                     }
                 }
                 break;
                 case "north": { if (strArray.length == 1){
                         isValid = true;
-                        } else {uI.printWarning(1);}
+                        } else {userInterface.printWarning(1);}
                 }
                 break;
                 case "east": { if (strArray.length == 1){
                         isValid = true;
-                        } else {uI.printWarning(1);}
+                        } else {userInterface.printWarning(1);}
                 }
                 break;
                 case "south": { if (strArray.length == 1){
                         isValid = true;
-                        } else {uI.printWarning(1);}
+                        } else {userInterface.printWarning(1);}
                 }
                 break;
                 case "west": { if (strArray.length == 1){
                         isValid = true;
-                        } else {uI.printWarning(1);}
+                        } else {userInterface.printWarning(1);}
                 }
                 break;
                 case "n": { if (strArray.length == 1){
                         isValid = true;
-                        } else {uI.printWarning(1);}
+                        } else {userInterface.printWarning(1);}
                 }
                 break;
                 case "e": { if (strArray.length == 1){
                         isValid = true;
-                        } else {uI.printWarning(1);}
+                        } else {userInterface.printWarning(1);}
                 }
                 break;
                 case "s": { if (strArray.length == 1){
                         isValid = true;
-                        } else {uI.printWarning(1);}
+                        } else {userInterface.printWarning(1);}
                 }
                 break;
                 case "w": { if (strArray.length == 1){
                         isValid = true;
-                        } else {uI.printWarning(1);}
+                        } else {userInterface.printWarning(1);}
                 }
                 break;
                 //need to add verification that item is in inventory of player or room
-                case "examine": { if (strArray.length ==2 && strArray[1].equals(inventory.getName())){
+                case "examine": { if (strArray.length ==2 && strArray[1].equals((player.getEquipedItem()).getName())){
                        isValid = true;
                     }
                 }
@@ -190,25 +187,25 @@ public class DarkYoung {
                 //debug mode commands
                 case "myhealth": { if (strArray.length == 1 && debugModeOn == true){
                         isValid = true;
-                        }else {uI.printWarning(4);}
+                        }else {userInterface.printWarning(4);}
                     }
                 break;
                 case "givenote": { if (strArray.length == 1 && debugModeOn == true){
                         isValid = true;
-                        }else {uI.printWarning(4);}
+                        }else {userInterface.printWarning(4);}
                     }
                 break;
                 case "giveflashlight": { if (strArray.length == 1 && debugModeOn == true){
                         isValid = true;
-                        }else {uI.printWarning(4);}
+                        }else {userInterface.printWarning(4);}
                     }
                 break;
                 case "currentitem": { if (strArray.length == 1 && debugModeOn == true){
                         isValid = true;
-                        }else {uI.printWarning(4);}
+                        }else {userInterface.printWarning(4);}
                     }
                 break; 
-                default: uI.printWarning(1);
+                default: userInterface.printWarning(1);
             }
         }
         if (isValid){
@@ -302,7 +299,7 @@ public class DarkYoung {
                         }else {userInterface.printWarning(3);}
                     } 
                 break;
-                case "examine": {userInterface.printItemDescriptionDetailed(inventory);}
+                case "examine": {userInterface.printItemDescriptionDetailed(player.getEquipedItem());}
                 break;
                 case "quit": { if (userInput.length == 1){
                     userInterface.runQuitScreen();
@@ -314,16 +311,13 @@ public class DarkYoung {
                 case "myhealth": userInterface.showPlayerHealth(player);
                 break;
                 
-                case "givenote": {if(checkMasterInventory("note")){
-                    inventory = copyFromMasterInventory("note");
-                    }
-                }
+                case "givenote": player.equipItem(masterInventory.copyItem("note"));
                 break;
-                /*case "giveflashlight": inventory = Items.generateFlashLight();
+                case "giveflashlight": player.equipItem(masterInventory.copyItem("flashlight"));
                 break;
-                */
-                case "currentitem": if (inventory != null){
-                    userInterface.showCurrentItem(inventory);
+               
+                case "currentitem": if (player.getEquipedItem() != null){
+                    userInterface.showCurrentItem(player.getEquipedItem());
                 } else {userInterface.printWarning(4);}
                 break;
                 default: userInterface.printWarning(1);
@@ -339,30 +333,28 @@ public class DarkYoung {
         return c;
     }
     
-    public boolean checkMasterInventory(String str){
-        int length = masterInventory.length;
-        int iterator = 0;
-        while (iterator < length){
-            String name = masterInventory[iterator].getName();
-            if (name.equals(str)){
-                return true;
-            }
-        }
-        return false;
-    }
     
-    public Items copyFromMasterInventory(String str){
-        Items itemToReturn = null;
-        int length = masterInventory.length;
+    
+    
+    
+    private void setMasterInventory(){
+        Items[] tempInventoryArray = addInventoryArrays(Collectible.generateCollectibleItems(), Props.generatePropItems());
+        int loops = tempInventoryArray.length;
         int iterator = 0;
-        while (iterator < length){
-            String name = masterInventory[iterator].getName();
-            if (name.equals(str)){
-                itemToReturn = masterInventory[iterator].getCopy();
-            }
+        while ( iterator < loops){
+            Items tempItem = tempInventoryArray[iterator];
+            masterInventory.addItem(tempItem);
             iterator += 1;
         }
-        return itemToReturn;
     }
+    
+    //constructor
+    public DarkYoung(){
+        userInterface = new Interface();
+        player = new Player();
+        masterInventory = new Inventory();
+        setMasterInventory();
+    }
+    
 }
         

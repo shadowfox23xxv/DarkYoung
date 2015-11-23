@@ -34,6 +34,7 @@ public class Collectible extends Items{
                 String d = bufferedReader.readLine();
                 Collectible newItem = new Collectible(i, n, s, t, u, o, w, g, d); 
                 itemSet[iterator] = newItem;
+                iterator += 1;
             }
             fileReader.close();
         } catch (IOException e) {
@@ -48,7 +49,7 @@ public class Collectible extends Items{
     private boolean canUse;
     private boolean isOn;
     private int weight;
-    final static int TOTAL_ITEMS = 1;
+    final static int TOTAL_ITEMS = 2;
     
     //class methods
     public boolean canBeSwung(){

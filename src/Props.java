@@ -31,6 +31,7 @@ public class Props extends Items{
                 String d = bufferedReader.readLine();                
                 Props newItem = new Props(i, n, g, d); 
                 itemSet[iterator] = newItem;
+                iterator += 1;
             }
             fileReader.close();
         } catch (IOException e) {
@@ -39,7 +40,7 @@ public class Props extends Items{
         return itemSet;
     }
 //class fields
-    final static int TOTAL_ITEMS = 1;
+    final static int TOTAL_ITEMS = 4;
 //class methods
 public Props getCopy(){
         Props temp = new Props(this);

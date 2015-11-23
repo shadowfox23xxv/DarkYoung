@@ -3,4 +3,4 @@ a black flashlight
 a simple chrome black metal flashlight.  There is a little wear, but otherwise undamaged.
 00101 note false false false false 0
 a small crumpled note
-a piece of crumpled paper.  The writting is hard to make out, but it says "I burned it! He'll never get out now! Into the fire, and now there's no way to escape!"
+It reads: "I burned it! He'll never get out now! Into the fire, and now there's no way to escape!"
