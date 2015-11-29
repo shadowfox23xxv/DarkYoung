@@ -1,6 +1,6 @@
-00001 flashlight true true true false 2 
+100001 flashlight true true true false 2 
 a black flashlight
 a simple chrome black metal flashlight.  There is a little wear, but otherwise undamaged.
-00101 note false false false false 0
+100101 note false false false false 0
 a small crumpled note
 It reads: "I burned it! He'll never get out now! Into the fire, and now there's no way to escape!"

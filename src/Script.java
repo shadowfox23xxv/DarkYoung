@@ -28,6 +28,11 @@ public class Script {
     private String quit1;
     private String debug1;
     private String debug2;
+    private String open1;
+    private String open0;
+    private String isNo;
+    private String dropped;
+    private String picked;
     
     public Script(){
 	String[] reader = new String[50];
@@ -64,6 +69,11 @@ public class Script {
     quit1 = reader[16];
     debug1 = reader[17];
     debug2 = reader[18];
+    open1 = reader[19];
+    open0 = reader[20];
+    isNo = reader[21];
+    dropped = reader[22];
+    picked = reader[23];
     }    
     
     //Game title
@@ -173,5 +183,23 @@ public class Script {
         }   
     }
     
+    public String openBackPack(int x){
+        switch (x){
+            case 1: return open1;
+            //break statement removed as unreachable
+            case 0: return open0;
+            //break statement removed as unreachable
+            default: return ("open backpack option not available");
+        }
+    }
+    public String isNo(){
+        return isNo;
+    }
+    public String youDropped(){
+        return dropped;
+    }
+    public String youPickedUp(){
+        return picked;
+    }
        
 }

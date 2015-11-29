@@ -48,7 +48,7 @@ Version 0.7
 -goals: add inventory class. Implement inventory class in player class and location class. add basic items to room and player inventory.Add appropriate commands
 
 Version 0.8
--goals: add container sub-class to item class. Implement container for dropped items in room. Add appropriate commands.
+-goals: add container sub-class to item class.  Add appropriate commands.
 
 Version 0.9
 -goals: populate rooms with items and containers

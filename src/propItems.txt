@@ -1,12 +1,12 @@
-01001 bed
+101001 bed
 a bed
 an old four-poster bed.  The linens are dirty and may once have been white.  
-01002 nightstand
+101002 nightstand
 a small wooden nightstand
 a dirty wooden nightstand with one drawer, covered in a thick layer of dust. It doesn't look like it's been touched in years.
-01003 couch
+101003 couch
 a beat up couch
 You can smell the musty odor without getting close.  Better not sit on it.  Who knows what's made a nest in that thing.
-01004 fireplace
+101004 fireplace
 a small brick fireplace
 The brick is old and crumbling.  Inside you can see the ash and other remnants of a long dead fire.

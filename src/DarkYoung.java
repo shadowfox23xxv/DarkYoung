@@ -10,14 +10,14 @@ public class DarkYoung {
     Interface userInterface;
     Inventory masterInventory;
     Player player;
+    Locations[] map;
     public static void main(String arg[]){
         //instantiate game object
         DarkYoung theGame = new DarkYoung();
         
         	
 //==================================================================================================
-        //!!!!Beginning of actual code for splash screen menu!!!!!
-        //!!!!!!!!!!!!!test again!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //Splash screen loop
         theGame.userInterface.runSplashScreen();
         boolean exitMenuCondition = false;
         do {
@@ -47,15 +47,7 @@ public class DarkYoung {
         theGame.userInterface.insertLineBreak(5);
         theGame.userInterface.insertDoubleLine();
 //=================================================================================================
-        
-        
-        
-        //generates debug map
-        Locations[] map = Locations.generateDebugMap();
-        theGame.player.changeLocation(map[0]);
-        
-       
-        
+        //Game loop
         theGame.userInterface.printLocationDescriptionGeneral(theGame.player.getLocation());
         boolean exitCondition = false;
         do{
@@ -138,6 +130,13 @@ public class DarkYoung {
                     }
                 }
                 break;
+                case "go": { if (strArray.length == 2){
+                        if ( strArray[1].matches ("north|south|east|west|n|s|e|w")){
+                            isValid = true;
+                        }else {userInterface.printWarning(1);}  
+                    }
+                }
+                break;
                 case "north": { if (strArray.length == 1){
                         isValid = true;
                         } else {userInterface.printWarning(1);}
@@ -179,8 +178,23 @@ public class DarkYoung {
                 }
                 break;
                 //need to add verification that item is in inventory of player or room
-                case "examine": { if (strArray.length ==2 && strArray[1].equals((player.getEquipedItem()).getName())){
+                case "examine": { if (strArray.length == 2 ){
                        isValid = true;
+                    }
+                }
+                break;
+                case "open": { if (strArray.length == 2) {
+                        isValid = true;
+                    }
+                }
+                break;
+                case "drop":{if (strArray.length == 2) {
+                        isValid = true;
+                    }
+                }
+                break;
+                case "take" : { if (strArray.length == 2){
+                        isValid = true;
                     }
                 }
                 break;
@@ -205,6 +219,16 @@ public class DarkYoung {
                         }else {userInterface.printWarning(4);}
                     }
                 break; 
+                case "locationinventory": { if (strArray.length == 1 && debugModeOn == true){
+                        isValid = true;
+                        }else {userInterface.printWarning(4);}
+                }
+                break;
+                case "add" : {if (strArray.length == 2 && debugModeOn == true){
+                        isValid = true;
+                        }else {userInterface.printWarning(4);}
+                }
+                break;
                 default: userInterface.printWarning(1);
             }
         }
@@ -220,11 +244,18 @@ public class DarkYoung {
     
     public void processCommand(String[] userInput){
         switch (userInput[0]){
+//Look command------------------------------------------------------------------            
                 case "look": { if (userInput[1].equals("around")){
                     userInterface.printLocationDescription(player.getLocation());
+                    player.setSOV(player.getLocation());
+                    if (!(player.getLocation()).inventory.empty()){
+                        userInterface.itemsInLocation((player.getLocation()).inventory.itemsInInventory());
+                        }
                     }
                 }
                 break;
+//Movement commands=============================================================
+//Walk command------------------------------------------------------------------                
                 case "walk": {if (userInput[1].equals("north") || userInput[1].equals("n")){
                         if (player.getLocation().northExit != null){
                         player.changeLocation(player.getLocation().northExit);
@@ -250,7 +281,35 @@ public class DarkYoung {
                             }else {userInterface.printWarning(3);}
                         }
                     } 
-                break; 
+                break;
+//Go command--------------------------------------------------------------------                
+                case "go": {if (userInput[1].equals("north") || userInput[1].equals("n")){
+                        if (player.getLocation().northExit != null){
+                        player.changeLocation(player.getLocation().northExit);
+                        userInterface.printLocationDescriptionGeneral(player.getLocation());
+                        }else {userInterface.printWarning(3);}
+                    } 
+                    if (userInput[1].equals("east") || userInput[1].equals("e")){
+                        if (player.getLocation().eastExit != null){
+                        player.changeLocation(player.getLocation().eastExit);
+                        userInterface.printLocationDescriptionGeneral(player.getLocation());
+                        }else {userInterface.printWarning(3);}
+                    }
+                        if (userInput[1].equals("south") || userInput[1].equals("s")){
+                            if (player.getLocation().southExit != null){
+                            player.changeLocation(player.getLocation().southExit);
+                            userInterface.printLocationDescriptionGeneral(player.getLocation());
+                            }else {userInterface.printWarning(3);}
+                        } 
+                        if (userInput[1].equals("west") || userInput[1].equals("w")){
+                            if (player.getLocation().westExit != null){
+                            player.changeLocation(player.getLocation().westExit);
+                            userInterface.printLocationDescriptionGeneral(player.getLocation());
+                            }else {userInterface.printWarning(3);}
+                        }
+                    } 
+                break;
+//Direction name commands-------------------------------------------------------                
                 case "north": {if (player.getLocation().northExit != null){
                     player.changeLocation(player.getLocation().northExit);
                     userInterface.printLocationDescriptionGeneral(player.getLocation());
@@ -299,26 +358,103 @@ public class DarkYoung {
                         }else {userInterface.printWarning(3);}
                     } 
                 break;
-                case "examine": {userInterface.printItemDescriptionDetailed(player.getEquipedItem());}
+//Item Commands=================================================================
+//Examine command---------------------------------------------------------------                
+                case "examine": {
+                    if (player.getSOV() == player.getLocation()){
+                        //code to check location inventory and equiped for userInput[1]
+                        if((player.getLocation()).inventory.contains(userInput[1])){
+                            userInterface.printItemDescriptionDetailed((player.getLocation()).inventory.copyItem(userInput[1]));
+                        }else {userInterface.noItemFound(userInput[1], "around you...");}
+                    }else if(player.getSOV() == player){
+                        //code to check player.inventory for userInput[1]
+                        if (player.inventory.contains(userInput[1])){
+                            userInterface.printItemDescriptionDetailed(player.inventory.copyItem(userInput[1]));
+                        }else {userInterface.noItemFound(userInput[1], "in your pack...");}
+                        
+                    }//else(){} add code to check if SOV is set to a container, then 
+                    //check if container inventory contains item.  If so, print
+                    //description.  If not, print warning
+                    //then add last else to print SOV error warning
+                    
+                }
                 break;
+                case "open": {
+                    //code to check if userInput[1] is 'backpack' or 'inventory' or 'bag'
+                    if (userInput[1].equals("backpack") || userInput[1].equals("inventory") || userInput[1].equals("bag")){
+                        player.setSOV(player);
+                        if (player.inventory.empty() != true){//!!!!!!!!!!!!!!!!
+                            //throwing null pointer exception
+                            //may be related to inventory object within
+                            //player. Possibly not inheriting right
+                            String[] inventoryList = player.inventory.listItems();
+                            userInterface.openBackPack(1);
+                            userInterface.printItemList(inventoryList);
+                        }else {userInterface.openBackPack(0);}
+                    }else{userInterface.printWarning(3);}
+                       
+                    //code to check userInput[1] against containers in room
+                        //change scopeOfView to container
+                        //if match found, print content of conatiner.inventory
+                    
+                }
+                break;
+                case ("take"):{
+                    if (player.getSOV() == player.getLocation()){
+                        //code to check location inventory and equiped for userInput[1]
+                        if ((player.getLocation()).inventory.contains(userInput[1])){
+                            player.inventory.addItem((player.getLocation()).inventory.getItem(userInput[1]));
+                            userInterface.pickedUpItem(userInput[1]);
+                        }else {userInterface.printWarning(3);}
+                    }
+                    //else(){} add code to check if SOV is set to a container, then 
+                    //check if container inventory contains item.  If so, remove
+                    //item from conatiner and add to player.inventory  
+                    //If not, print warning
+                    //then add last else to print warning
+                }
+                break;
+                case ("drop"):{
+                    //add code to chancge SOV to location
+                    player.setSOV(player.getLocation());
+                    if (masterInventory.contains(userInput[1])){
+                        //add code to remove item from player.inventory and add to location inventory
+                        (player.getLocation()).inventory.addItem(player.inventory.getItem(userInput[1]));
+                        userInterface.droppedItem(userInput[1]);
+                    }else{userInterface.printWarning(3);}
+                }
+                break;
+                case ("put"):{
+                    //add code to confirm SOV is a container
+                        //if so, remove item from player.inventory and add to container's
+                    //if not, print warning
+                }
+                break;
+                case ("place"):{
+                    //same as put
+                }
+                break;
+        
                 case "quit": { if (userInput.length == 1){
                     userInterface.runQuitScreen();
                     System.exit(0);
                         }
                     }   
                 break;
-                //debug mode commands
+//debug mode commands===========================================================
                 case "myhealth": userInterface.showPlayerHealth(player);
                 break;
-                
-                case "givenote": player.equipItem(masterInventory.copyItem("note"));
+                case "locationinventory": {String[] inventoryList = (player.getLocation()).inventory.listItems();
+                         userInterface.printItemList(inventoryList);
+                }
                 break;
-                case "giveflashlight": player.equipItem(masterInventory.copyItem("flashlight"));
-                break;
-               
-                case "currentitem": if (player.getEquipedItem() != null){
-                    userInterface.showCurrentItem(player.getEquipedItem());
-                } else {userInterface.printWarning(4);}
+                case "add": {if (masterInventory.contains(userInput[1])){
+                    //userInput[1] should be an item ID
+                        
+                        player.inventory.addItem(masterInventory.copyItem(userInput[1]));
+                        System.out.println("added " + userInput[1]);
+                    }else{userInterface.printWarning(1);}
+                }
                 break;
                 default: userInterface.printWarning(1);
                 }   
@@ -346,6 +482,12 @@ public class DarkYoung {
             masterInventory.addItem(tempItem);
             iterator += 1;
         }
+    } 
+    
+    private void populateItemsToDebugMap(){
+        (Locations.getLocationAtXY(map, 1, 3)).inventory.addItem(masterInventory.copyItem("flashlight"));
+        (Locations.getLocationAtXY(map, 2, 1)).inventory.addItem(masterInventory.copyItem("note"));
+        
     }
     
     //constructor
@@ -354,6 +496,10 @@ public class DarkYoung {
         player = new Player();
         masterInventory = new Inventory();
         setMasterInventory();
+        map = Locations.generateDebugMap();
+        populateItemsToDebugMap();
+        player.changeLocation(map[0]);
+        
     }
     
 }

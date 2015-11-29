@@ -42,6 +42,7 @@ public class Locations{
  
     String roomGeneralDescription = "Blank";
     String roomDetailedDescription = "Blank";
+    Inventory inventory;
     
 
     //member methods
@@ -68,6 +69,7 @@ public class Locations{
         yCoordinate = y; 
         roomGeneralDescription = rgd;
         roomDetailedDescription = rdd;
+        inventory = new Inventory();
     }
     
     //generates the Locations for debug map
@@ -175,5 +177,20 @@ public class Locations{
             iterator += 1;
         }
         return locArray;
-    }    
+    }
+    
+    public static Locations getLocationAtXY(Locations[] map, int x, int y){
+        int iterator = 0;
+        while ( iterator < totalNumberOfRooms){
+            if (map[iterator].xCoordinate == x && map[iterator].yCoordinate == y){
+                return map[iterator];
+            }
+            iterator++;
+        }
+        return null;
+    }
+    
+    public Locations(){
+        totalNumberOfRooms++;
+    }
 }

@@ -6,11 +6,11 @@
 
 public class Character{
     //class variables
-    private int health = 0;
-    private int maxHealth = 0;
-    private String name = "Bob";
-    private Locations currentLocation;
-    private Inventory inventory;
+    protected int health = 0;
+    protected int maxHealth = 0;
+    protected String name = "Bob";
+    protected Locations currentLocation;
+    public Inventory inventory;
     
     //class methods
     int getHealth(){
@@ -60,13 +60,5 @@ public class Character{
     String[] listItems(){
         String[] returnArray = this.inventory.listItems();
         return returnArray;
-    }
-    
-    
-    
-    //constructor
-    public void Player(){
-    inventory = new Inventory();
-    
     }
 }

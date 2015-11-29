@@ -6,11 +6,12 @@
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Iterator;
+import java.util.Arrays;
 
 public class Inventory{
     //Class fields
-    Map<Integer, Object> storage; //hashmap to actual store Items objects using ID as the key
-    Map<String, Integer> keyStorage;//hashmap that links an Items object's name to it's ID for retreival
+    private Map<Integer, Object> storage; //hashmap to actual store Items objects using ID as the key
+    private Map<String, Integer> keyStorage;//hashmap that links an Items object's name to it's ID for retreival
     
     //Class methods
     public void addItem(Items x){
@@ -61,6 +62,9 @@ public class Inventory{
         }else {return null;}
     }
     
+    
+    
+    
     public String[] listItems(){
         String[] returnArray = new String[keyStorage.size()];
         Iterator entries = keyStorage.entrySet().iterator();
@@ -73,7 +77,31 @@ public class Inventory{
         }
         return returnArray;
     }
+    
+    public Items[] itemsInInventory(){
+        Items[] returnArray = new Items[storage.size()];
+        Iterator entries = storage.entrySet().iterator();
+        int i = 0;
+        while(entries.hasNext()){
+            Map.Entry entry = (Map.Entry) entries.next();
+            Items value = (Items)entry.getValue();
+            returnArray[i] = value;
+            i ++;
+        }
+        return returnArray;
+    }
+ 
      
+   
+    
+    public boolean contains(String str){
+        boolean doesItContain = Arrays.asList(listItems()).contains(str);
+        return doesItContain;
+    }
+    
+    public boolean empty(){
+        return storage.isEmpty();
+    }
     
     //constructor
     public Inventory(){

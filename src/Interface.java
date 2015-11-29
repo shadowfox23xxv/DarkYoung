@@ -68,6 +68,23 @@ public class Interface {
     public void showCurrentItem(Items item){
         System.out.println("Current item is " + item.getName());
     }
+    
+    public void itemsInLocation(Items[] itemArray){
+        System.out.println("Around you, you see:");
+        for (Items item : itemArray){
+            System.out.println("- " + item.getGeneralDescription());
+        }
+    }
+    
+    public void printItemList(String[] itemArray){
+        for (String item : itemArray){
+            System.out.println("- " + item);
+        }
+    }
+    
+    public void openBackPack(int x){
+        System.out.println(script.openBackPack(x));
+    }
 
     //Warnings-------------------------------------------------------------
    //singular warning method to replace warnTooManyWords and warnInvalid
@@ -80,9 +97,19 @@ public class Interface {
             case 3: System.out.println(script.commandImpossibleText(1));
             break;
             case 4: System.out.println(script.unrecognizedDebugCommandText(1));
-            break;
+            break;    
             default: System.out.println("Warning option not available");
         }
+    }
+    
+    public void noItemFound(String item, String loc){
+        System.out.println(script.isNo() + " " + item + " " + loc);
+    }
+    public void droppedItem(String x){
+        System.out.println(script.youDropped() + " " + x);
+    }
+    public void pickedUpItem(String x){
+        System.out.println(script.youPickedUp() + " " + x);
     }
     
     //Warning to inform player that debug mode has been activated
