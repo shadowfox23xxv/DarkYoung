@@ -198,27 +198,19 @@ public class DarkYoung {
                     }
                 }
                 break;
+                case "equip" : { if (strArray.length == 2){
+                        isValid = true;
+                    }
+                }
+                break;
                 //debug mode commands
                 case "myhealth": { if (strArray.length == 1 && debugModeOn == true){
                         isValid = true;
                         }else {userInterface.printWarning(4);}
                     }
                 break;
-                case "givenote": { if (strArray.length == 1 && debugModeOn == true){
-                        isValid = true;
-                        }else {userInterface.printWarning(4);}
-                    }
-                break;
-                case "giveflashlight": { if (strArray.length == 1 && debugModeOn == true){
-                        isValid = true;
-                        }else {userInterface.printWarning(4);}
-                    }
-                break;
-                case "currentitem": { if (strArray.length == 1 && debugModeOn == true){
-                        isValid = true;
-                        }else {userInterface.printWarning(4);}
-                    }
-                break; 
+                
+                
                 case "locationinventory": { if (strArray.length == 1 && debugModeOn == true){
                         isValid = true;
                         }else {userInterface.printWarning(4);}
@@ -420,6 +412,9 @@ public class DarkYoung {
                     if (masterInventory.contains(userInput[1])){
                         //add code to remove item from player.inventory and add to location inventory
                         (player.getLocation()).inventory.addItem(player.inventory.getItem(userInput[1]));
+                        if ((player.getEquipedItem()).getName().equals(userInput[1])){
+                            player.unequip();
+                        }
                         userInterface.droppedItem(userInput[1]);
                     }else{userInterface.printWarning(3);}
                 }
@@ -434,6 +429,11 @@ public class DarkYoung {
                     //same as put
                 }
                 break;
+                case ("equip"): {
+                    if (player.inventory.contains(userInput[1])){
+                        player.equipItem(player.inventory.copyItem(userInput[1]));
+                    }
+                }
         
                 case "quit": { if (userInput.length == 1){
                     userInterface.runQuitScreen();
@@ -449,7 +449,7 @@ public class DarkYoung {
                 }
                 break;
                 case "add": {if (masterInventory.contains(userInput[1])){
-                    //userInput[1] should be an item ID
+                    
                         
                         player.inventory.addItem(masterInventory.copyItem(userInput[1]));
                         System.out.println("added " + userInput[1]);

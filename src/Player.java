@@ -7,7 +7,7 @@
 public class Player extends Character{
     //class variables
     private int maxInventory;
-   
+    private Items equiped;
     private Object scopeOfView; //holds reference to either Locations or Items.Props.Container class item
     public Inventory inventory = new Inventory();
     //class methods
@@ -20,6 +20,17 @@ public class Player extends Character{
         return maxInventory;
     }
     
+    Items getEquipedItem(){
+        return equiped;
+    }
+    
+    void equipItem(Items item){
+        equiped = item;
+    }
+    
+    void unequip(){
+        equiped = null;
+    }
   
     
     Object getSOV(){
