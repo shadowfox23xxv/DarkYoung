@@ -352,13 +352,13 @@ public class DarkYoung {
                     if (player.getSOV() == player.getLocation()){
                         //code to check location inventory and equiped for userInput[1]
                         if((player.getLocation()).inventory.contains(userInput[1])){
-                            userInterface.printItemDescriptionDetailed((player.getLocation()).inventory.copyItem(userInput[1]));
-                            
+                            userInterface.printItemDescriptionDetailed((player.getLocation()).inventory.getItemReference(userInput[1]));
+                            userInterface.printItemDescriptionDetailed((player.getLocation()).inventory.getItemReference(userInput[1]));
                         }else {userInterface.noItemFound(userInput[1], "around you...");}
                     }else if(player.getSOV() == player){
                         //code to check player.inventory for userInput[1]
                         if (player.inventory.contains(userInput[1])){
-                            userInterface.printItemDescriptionDetailed(player.inventory.copyItem(userInput[1]));
+                            userInterface.printItemDescriptionDetailed(player.inventory.getItemReference(userInput[1]));
                         }else {userInterface.noItemFound(userInput[1], "in your pack...");}
                         
                     }//else(){} add code to check if SOV is set to a container, then 
@@ -392,7 +392,7 @@ public class DarkYoung {
                     if (player.getSOV() == player.getLocation()){
                         //code to check location inventory and equiped for userInput[1]
                         if ((player.getLocation()).inventory.contains(userInput[1])){
-                            player.inventory.addItem((player.getLocation()).inventory.getItem(userInput[1]));
+                            player.inventory.addItem((player.getLocation()).inventory.takeItem(userInput[1]));
                             userInterface.pickedUpItem(userInput[1]);
                         }else {userInterface.printWarning(3);}
                     }
@@ -408,7 +408,7 @@ public class DarkYoung {
                     player.setSOV(player.getLocation());
                     if (masterInventory.contains(userInput[1])){//verifies item exist in game world
                         //code to remove item from player.inventory and add to location inventory
-                        (player.getLocation()).inventory.addItem(player.inventory.getItem(userInput[1]));
+                        (player.getLocation()).inventory.addItem(player.inventory.takeItem(userInput[1]));
                         
                         userInterface.droppedItem(userInput[1]);
                     }else{userInterface.printWarning(3);}
@@ -441,7 +441,7 @@ public class DarkYoung {
                 case "add": {if (masterInventory.contains(userInput[1])){
                     
                         
-                        player.inventory.addItem(masterInventory.copyItem(userInput[1]));
+                        player.inventory.addItem(masterInventory.getItemReference(userInput[1]));
                         System.out.println("added " + userInput[1]);
                     }else{userInterface.printWarning(1);}
                 }
@@ -475,8 +475,8 @@ public class DarkYoung {
     } 
     
     private void populateItemsToDebugMap(){
-        (Locations.getLocationAtXY(map, 1, 3)).inventory.addItem(masterInventory.copyItem("flashlight"));
-        (Locations.getLocationAtXY(map, 2, 1)).inventory.addItem(masterInventory.copyItem("note"));
+        (Locations.getLocationAtXY(map, 1, 3)).inventory.addItem((masterInventory.getItemReference(100001)).getCopy());
+        (Locations.getLocationAtXY(map, 2, 1)).inventory.addItem((masterInventory.getItemReference(100101)).getCopy());
         
     }
     

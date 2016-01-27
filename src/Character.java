@@ -38,27 +38,4 @@ public class Character{
         currentLocation = loc;
     }
     
-    public void addItem(Items x){
-        inventory.addItem(x);
-    }
-    
-    public void removeItem(Items x){
-        inventory.removeItem(x);
-    }
-    
-    public void removeItem(String name){
-        inventory.removeItem(name);
-    }
-    
-    public Items getItem(String name){
-        return inventory.getItem(name);
-    }
-    
-    
-    
-    
-    String[] listItems(){
-        String[] returnArray = this.inventory.listItems();
-        return returnArray;
-    }
 }

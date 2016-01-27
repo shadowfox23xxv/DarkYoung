@@ -28,7 +28,7 @@ public class Inventory{
         storage.put(ID, x);
         keyStorage.put(name, ID);
     }
-    
+    /*
     //remove item by passing object reference
     public void removeItem(Items x){
         int ID = x.getID();
@@ -39,7 +39,8 @@ public class Inventory{
         if (keyStorage.containsKey(name)){
             keyStorage.remove(name);
         }
-    }
+    }*/
+    /*
     //remove item by passing item name
     public void removeItem(String name){
         int ID;
@@ -48,7 +49,7 @@ public class Inventory{
             keyStorage.remove(name);
             storage.remove(ID);
         }
-    }
+    }*/
     //takes item ID and removes that item from the inventory
     public void removeItem(int id){
         if (storage.containsKey(id)){
@@ -58,6 +59,7 @@ public class Inventory{
             
         }
     }
+    /*
     //removes item from inventory and returns reference to the pulled item
     public Items getItem(String name){
         int ID;
@@ -70,7 +72,7 @@ public class Inventory{
             //return ((Items)returnItem);//commented out to test change of storage to <Integer, Items>
             return returnItem;
         }else {return null;}
-    }
+    }*/
     //accepts item ID, and if that item is in inventory, removes it and returns the object
     public Items takeItem(int id){
         Items returnItem;
@@ -80,19 +82,14 @@ public class Inventory{
             return returnItem;
         }else {return null;}
     }
+    public Items takeItem(String name){
+        return this.takeItem(this.getKey(name));
+    }
         
     
     //returns reference to item in inventory by name
-    public Items copyItem(String name){
-        int ID;
-        //Object returnItem;//commented out to test change of storage to <Integer, Items>
-        Items returnItem;
-        if (keyStorage.containsKey(name)){
-            ID = keyStorage.get(name);
-            returnItem = storage.get(ID);
-            //return ((Items)returnItem);//commented out to test change of storage to <Integer, Items>
-            return returnItem;
-        }else {return null;}
+    public Items getItemReference(String name){
+        return this.getItemReference(this.getKey(name));
     }
     
    //returns reference to item in inventory by ID
