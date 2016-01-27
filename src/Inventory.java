@@ -13,7 +13,8 @@ public class Inventory{
     private Map<Integer, Object> storage; //hashmap to actual store Items objects using ID as the key
     private Map<String, Integer> keyStorage;//hashmap that links an Items object's name to it's ID for retreival
     
-    //Class methods
+    //Class methods-------------------------------------------------------------
+    //passes an item object to add it to the current inventory
     public void addItem(Items x){
         int ID = x.getID();
         String name = x.getName();
@@ -40,7 +41,7 @@ public class Inventory{
             storage.remove(ID);
         }
     }
-    //pulls item from inventory and returns reference to the pulled item
+    //removes item from inventory and returns reference to the pulled item
     public Items getItem(String name){
         int ID;
         Object returnItem;
@@ -65,7 +66,7 @@ public class Inventory{
     
     
     
-    public String[] listItems(){
+    public String[] listItems(){//returns an array containing the names of all items in inventory
         String[] returnArray = new String[keyStorage.size()];
         Iterator entries = keyStorage.entrySet().iterator();
         int i = 0;
@@ -78,7 +79,7 @@ public class Inventory{
         return returnArray;
     }
     
-    public Items[] itemsInInventory(){
+    public Items[] itemsInInventory(){//returns array containing object reference to all items in inventory
         Items[] returnArray = new Items[storage.size()];
         Iterator entries = storage.entrySet().iterator();
         int i = 0;

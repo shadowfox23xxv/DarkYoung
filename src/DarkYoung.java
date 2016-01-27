@@ -198,11 +198,7 @@ public class DarkYoung {
                     }
                 }
                 break;
-                case "equip" : { if (strArray.length == 2){
-                        isValid = true;
-                    }
-                }
-                break;
+                
                 //debug mode commands
                 case "myhealth": { if (strArray.length == 1 && debugModeOn == true){
                         isValid = true;
@@ -407,14 +403,12 @@ public class DarkYoung {
                 }
                 break;
                 case ("drop"):{
-                    //add code to chancge SOV to location
+                    //code to chancge SOV to location
                     player.setSOV(player.getLocation());
-                    if (masterInventory.contains(userInput[1])){
-                        //add code to remove item from player.inventory and add to location inventory
+                    if (masterInventory.contains(userInput[1])){//verifies item exist in game world
+                        //code to remove item from player.inventory and add to location inventory
                         (player.getLocation()).inventory.addItem(player.inventory.getItem(userInput[1]));
-                        if ((player.getEquipedItem()).getName().equals(userInput[1])){
-                            player.unequip();
-                        }
+                        
                         userInterface.droppedItem(userInput[1]);
                     }else{userInterface.printWarning(3);}
                 }
@@ -429,12 +423,7 @@ public class DarkYoung {
                     //same as put
                 }
                 break;
-                case ("equip"): {
-                    if (player.inventory.contains(userInput[1])){
-                        player.equipItem(player.inventory.copyItem(userInput[1]));
-                    }
-                }
-        
+                
                 case "quit": { if (userInput.length == 1){
                     userInterface.runQuitScreen();
                     System.exit(0);
