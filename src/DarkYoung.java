@@ -353,6 +353,7 @@ public class DarkYoung {
                         //code to check location inventory and equiped for userInput[1]
                         if((player.getLocation()).inventory.contains(userInput[1])){
                             userInterface.printItemDescriptionDetailed((player.getLocation()).inventory.copyItem(userInput[1]));
+                            
                         }else {userInterface.noItemFound(userInput[1], "around you...");}
                     }else if(player.getSOV() == player){
                         //code to check player.inventory for userInput[1]

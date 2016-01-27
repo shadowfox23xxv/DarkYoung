@@ -10,10 +10,17 @@ import java.util.Arrays;
 
 public class Inventory{
     //Class fields
-    private Map<Integer, Object> storage; //hashmap to actual store Items objects using ID as the key
+    private Map<Integer, Items> storage; //hashmap to actual store Items objects using ID as the key
     private Map<String, Integer> keyStorage;//hashmap that links an Items object's name to it's ID for retreival
     
     //Class methods-------------------------------------------------------------
+    //accepts item name and returns item key
+    private int getKey(String name){
+        if (keyStorage.containsKey(name)){
+            return keyStorage.get(name);
+        }else {return 0;}
+    }
+
     //passes an item object to add it to the current inventory
     public void addItem(Items x){
         int ID = x.getID();
@@ -21,6 +28,7 @@ public class Inventory{
         storage.put(ID, x);
         keyStorage.put(name, ID);
     }
+    
     //remove item by passing object reference
     public void removeItem(Items x){
         int ID = x.getID();
@@ -41,31 +49,61 @@ public class Inventory{
             storage.remove(ID);
         }
     }
+    //takes item ID and removes that item from the inventory
+    public void removeItem(int id){
+        if (storage.containsKey(id)){
+            Items item = storage.get(id);
+            storage.remove(id);
+            keyStorage.remove(item.getName());
+            
+        }
+    }
     //removes item from inventory and returns reference to the pulled item
     public Items getItem(String name){
         int ID;
-        Object returnItem;
+        //Object returnItem;//commented out to test change of storage to <Integer, Items>
+        Items returnItem;
         if (keyStorage.containsKey(name)){
             ID = keyStorage.get(name);
             returnItem = storage.get(ID);
             this.removeItem(name);
-            return ((Items)returnItem);
+            //return ((Items)returnItem);//commented out to test change of storage to <Integer, Items>
+            return returnItem;
         }else {return null;}
     }
-    //returns reference to item
+    //accepts item ID, and if that item is in inventory, removes it and returns the object
+    public Items takeItem(int id){
+        Items returnItem;
+        if (storage.containsKey(id)){
+            returnItem = storage.get(id);
+            this.removeItem(id);
+            return returnItem;
+        }else {return null;}
+    }
+        
+    
+    //returns reference to item in inventory by name
     public Items copyItem(String name){
         int ID;
-        Object returnItem;
+        //Object returnItem;//commented out to test change of storage to <Integer, Items>
+        Items returnItem;
         if (keyStorage.containsKey(name)){
             ID = keyStorage.get(name);
             returnItem = storage.get(ID);
-            return ((Items)returnItem);
+            //return ((Items)returnItem);//commented out to test change of storage to <Integer, Items>
+            return returnItem;
         }else {return null;}
     }
     
-    
-    
-    
+   //returns reference to item in inventory by ID
+    public Items getItemReference(int id){
+        Items returnItem;
+        if (storage.containsKey(id)){
+            returnItem = storage.get(id);
+            return returnItem;
+        }else {return null;}
+        
+    }
     public String[] listItems(){//returns an array containing the names of all items in inventory
         String[] returnArray = new String[keyStorage.size()];
         Iterator entries = keyStorage.entrySet().iterator();
