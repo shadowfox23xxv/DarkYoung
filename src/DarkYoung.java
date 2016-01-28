@@ -441,7 +441,7 @@ public class DarkYoung {
                 case "add": {if (masterInventory.contains(userInput[1])){
                     
                         
-                        player.inventory.addItem(masterInventory.getItemReference(userInput[1]));
+                        player.inventory.addItem((masterInventory.getItemReference(userInput[1])).getCopy());
                         System.out.println("added " + userInput[1]);
                     }else{userInterface.printWarning(1);}
                 }
