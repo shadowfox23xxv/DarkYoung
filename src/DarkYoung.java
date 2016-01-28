@@ -390,10 +390,12 @@ public class DarkYoung {
                 break;
                 case ("take"):{
                     if (player.getSOV() == player.getLocation()){
-                        //code to check location inventory and equiped for userInput[1]
+                        //code to check location inventory for userInput[1]
                         if ((player.getLocation()).inventory.contains(userInput[1])){
-                            player.inventory.addItem((player.getLocation()).inventory.takeItem(userInput[1]));
-                            userInterface.pickedUpItem(userInput[1]);
+                            if (((player.getLocation()).inventory.getItemReference(userInput[1])) instanceof Collectible){
+                                player.inventory.addItem((player.getLocation()).inventory.takeItem(userInput[1]));
+                                userInterface.pickedUpItem(userInput[1]);
+                            }
                         }else {userInterface.printWarning(3);}
                     }
                     //else(){} add code to check if SOV is set to a container, then 
@@ -465,10 +467,11 @@ public class DarkYoung {
     
     private void setMasterInventory(){
         Items[] tempInventoryArray = addInventoryArrays(Collectible.generateCollectibleItems(), Props.generatePropItems());
-        int loops = tempInventoryArray.length;
+        Items[] tempInventoryArray2 = addInventoryArrays(tempInventoryArray, Container.generateContainerItems());
+        int loops = tempInventoryArray2.length;
         int iterator = 0;
         while ( iterator < loops){
-            Items tempItem = tempInventoryArray[iterator];
+            Items tempItem = tempInventoryArray2[iterator];
             masterInventory.addItem(tempItem);
             iterator += 1;
         }
@@ -477,7 +480,7 @@ public class DarkYoung {
     private void populateItemsToDebugMap(){
         (Locations.getLocationAtXY(map, 1, 3)).inventory.addItem((masterInventory.getItemReference(100001)).getCopy());
         (Locations.getLocationAtXY(map, 2, 1)).inventory.addItem((masterInventory.getItemReference(100101)).getCopy());
-        
+        (Locations.getLocationAtXY(map, 1, 3)).inventory.addItem((masterInventory.getItemReference(102001)).getCopy());
     }
     
     //constructor
