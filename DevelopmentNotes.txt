@@ -3,7 +3,8 @@ Dark Young - an interactive fiction horror game
 Developement notes
 -ITEMS-------------------------------------------------------
 item numbering scheme
-00001-00100: tools
-00101-00200: clues
+100001-00100: tools
+100101-00200: clues
 
-01001-02000: props
+101001-02000: props
+102001-03000: containers
