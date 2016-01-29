@@ -14,6 +14,7 @@ import java.io.IOException;
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 public class Locations{
     //member variables
+    static final int NUMBER_OF_ROOMS = 9;
     static int totalNumberOfRooms = 0;
     //boolean flags to show is exit exists
     boolean hasNorthExit = false;
@@ -74,7 +75,7 @@ public class Locations{
     
     //generates the Locations for debug map
    static private Locations[] generateDebugMapLocations(){
-        Locations[] locationSet = new Locations[4];
+        Locations[] locationSet = new Locations[NUMBER_OF_ROOMS];
         try{
             File file = new File("src/debugMap.txt");
             FileReader fileReader = new FileReader(file);

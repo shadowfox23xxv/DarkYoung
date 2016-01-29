@@ -1,12 +1,27 @@
-false false true false false false false false 1 3
+false false true false false false false false 1 4
 You are standing in a small, dimly lit bedroom, with one door to the south, and a window to the north.
 The room is dirty. Dust covers the bed and small dresser inside.  The only light comes from the moon outside, shining through a tattered curtain hung over the window.  There is a single door to the south.
-true true false false false false false false 1 2
-You enter a darkened hallway that extends to the east. There is a door to the north.
+true true false false false false false false 1 3
+You enter a dim hallway that extends to the east. There is a door to the north.
 You are standing in a darkend hallway that extends to the east. There is a door to the north.
-false false true true false false false false 2 2
+true false true true false false false false 3 3
 You enter a dim hallway that extends to the west. There is a door to the south.
 You are standing in a dim hallway that extends to the west. Set at the near end of the hallway is a small, dirty window. There is a door to the south.
-true false false false false false false false 2 1
+true true true true false false false false 3 2
 You enter a den, with simple furniture.  A couch, an endtable, and a fireplace. There is a door to the north, and a thicker, heavier door to the south.
 It's a simple room, dusty and sprinkled with cobwebs.  The couch and endtable looks like it hasn't been used in ages.  The fireplace is dark, and the southern door is heavily boarded.
+false true false true false false false false 2 3
+You enter a dim hallway that extends to the east and west
+You are standing in a dimly lit hallway that extends off into the east and west. The floor is dirty, and the wallpaper has peeled considerably.
+false false true false false false false false 3 4
+You enter a small wreck of a bedroom with a single door to the south, and a closet to the east.
+A dirty, half destroyed room.  The bed is in pieces on the floor, along with the rest of the furniture.  Moonlight streams through the shattered window, glinting off broken glass on the floor.  A battered closet door stands to the east, and the door to the south has nearly been ripped from it's hinges.
+false true false false false false false false 2 2
+You step into a tiny empty room with a door to the east
+There isn't much here.  This small room is completely empty, save for two metal rings set into the back wall.  Strange stains run down the wall below these rings.
+false false false true false false false false 4 2
+You step into a tiny, dingy kitchen with a doorway to the west.
+It barely passes for a kitchen.  No table, just a sink and a counter, with a pot resting on a small hotplate. Above the sink there is a single worn cabinet.
+true false false false false false false false 3 1
+You step outside.  You are free!
+The cold air whips about, blowing leaves around your feet as the trees surrounding you moan to themselves.  You should get out of here as soon as possible....

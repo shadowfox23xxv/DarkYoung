@@ -545,7 +545,7 @@ public class DarkYoung {
     } 
     
     private void populateItemsToDebugMap(){
-        (Locations.getLocationAtXY(map, 1, 3)).inventory.addItem((masterInventory.getItemReference(100001)).getCopy());//flashlight
+       /* (Locations.getLocationAtXY(map, 1, 3)).inventory.addItem((masterInventory.getItemReference(100001)).getCopy());//flashlight
         (Locations.getLocationAtXY(map, 2, 1)).inventory.addItem((masterInventory.getItemReference(100101)).getCopy());//note
         (Locations.getLocationAtXY(map, 1, 3)).inventory.addItem((masterInventory.getItemReference(102001)).getCopy());//box
         (Locations.getLocationAtXY(map, 1, 3)).inventory.addItem((masterInventory.getItemReference(101001)).getCopy());//bed
@@ -554,7 +554,7 @@ public class DarkYoung {
         (Locations.getLocationAtXY(map, 2, 1)).inventory.addItem((masterInventory.getItemReference(101004)).getCopy());//fireplace
         (Locations.getLocationAtXY(map, 2, 1)).inventory.addItem((masterInventory.getItemReference(101005)).getCopy());//endtable
         //burned-key
-        //faded-note
+        //faded-note*/
     }
     
     //constructor
