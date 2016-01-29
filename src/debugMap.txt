@@ -1,6 +1,6 @@
 false false true false false false false false 1 4
 You are standing in a small, dimly lit bedroom, with one door to the south, and a window to the north.
-The room is dirty. Dust covers the bed and small dresser inside.  The only light comes from the moon outside, shining through a tattered curtain hung over the window.  There is a single door to the south.
+The room is dirty. Dust covers the bed and small nightstand inside.  The only light comes from the moon outside, shining through a tattered curtain hung over the window.  There is a single door to the south.
 true true false false false false false false 1 3
 You enter a dim hallway that extends to the east. There is a door to the north.
 You are standing in a darkend hallway that extends to the east. There is a door to the north.

@@ -13,3 +13,9 @@ The brick is old and crumbling.  Inside you can see the ash and other remnants o
 101005 endtable
 an endtable
 a dirty, dusty endtable.  It may have once been painted white, but it's hard to tell now.  There's a single drawer in the front.
+101006 broken-bed
+a broken-bed
+the bed has been wrecked. It's frame destroyed, and the mattress has large gashes, exposing the springs and padding.  The sheets are torn to shreds.
+101007 broken-nightstand
+a broken-nightstand
+A pile of splintered wood, it was once a simple nightstand, but no more.

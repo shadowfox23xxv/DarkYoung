@@ -545,16 +545,26 @@ public class DarkYoung {
     } 
     
     private void populateItemsToDebugMap(){
-       /* (Locations.getLocationAtXY(map, 1, 3)).inventory.addItem((masterInventory.getItemReference(100001)).getCopy());//flashlight
-        (Locations.getLocationAtXY(map, 2, 1)).inventory.addItem((masterInventory.getItemReference(100101)).getCopy());//note
-        (Locations.getLocationAtXY(map, 1, 3)).inventory.addItem((masterInventory.getItemReference(102001)).getCopy());//box
-        (Locations.getLocationAtXY(map, 1, 3)).inventory.addItem((masterInventory.getItemReference(101001)).getCopy());//bed
-        (Locations.getLocationAtXY(map, 1, 3)).inventory.addItem((masterInventory.getItemReference(101002)).getCopy());//nightstand
-        (Locations.getLocationAtXY(map, 2, 1)).inventory.addItem((masterInventory.getItemReference(101003)).getCopy());//couch
-        (Locations.getLocationAtXY(map, 2, 1)).inventory.addItem((masterInventory.getItemReference(101004)).getCopy());//fireplace
-        (Locations.getLocationAtXY(map, 2, 1)).inventory.addItem((masterInventory.getItemReference(101005)).getCopy());//endtable
-        //burned-key
-        //faded-note*/
+        
+        //props
+        (Locations.getLocationAtXY(map, 1, 4)).inventory.addItem((masterInventory.getItemReference(101001)).getCopy());//bed
+        (Locations.getLocationAtXY(map, 3, 4)).inventory.addItem((masterInventory.getItemReference(101006)).getCopy());//broken-bed
+        (Locations.getLocationAtXY(map, 3, 4)).inventory.addItem((masterInventory.getItemReference(101007)).getCopy());//broken-nightstand
+        (Locations.getLocationAtXY(map, 3, 2)).inventory.addItem((masterInventory.getItemReference(101003)).getCopy());//couch
+        
+        
+        //containers
+        (Locations.getLocationAtXY(map, 1, 4)).inventory.addItem((masterInventory.getItemReference(102002)).getCopy());//nightstand
+        (Locations.getLocationAtXY(map, 3, 2)).inventory.addItem((masterInventory.getItemReference(102004)).getCopy());//endtable
+        (Locations.getLocationAtXY(map, 3, 2)).inventory.addItem((masterInventory.getItemReference(102003)).getCopy());//fireplace
+        //collectibles
+        Container tempContainer;
+        (Locations.getLocationAtXY(map, 1, 4)).inventory.addItem((masterInventory.getItemReference(100001)).getCopy());//flashlight
+        tempContainer = (Container) (Locations.getLocationAtXY(map, 1, 4)).inventory.getItemReference(102002);//nightstand in room 1,4
+        tempContainer.inventory.addItem((masterInventory.getItemReference(100103)).getCopy());//faded-note
+        (Locations.getLocationAtXY(map, 3, 4)).inventory.addItem((masterInventory.getItemReference(100101)).getCopy());//crumpled-note
+        tempContainer = (Container) (Locations.getLocationAtXY(map, 3, 2)).inventory.getItemReference(102003);//fireplace in room 3,2
+        tempContainer.inventory.addItem((masterInventory.getItemReference(100102)).getCopy());//burned-key
     }
     
     //constructor
