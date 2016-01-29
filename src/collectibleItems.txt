@@ -1,6 +1,12 @@
 100001 flashlight true true true false 2 
 a black flashlight
 a simple chrome black metal flashlight.  There is a little wear, but otherwise undamaged.
-100101 note false false false false 0
-a small crumpled note
+100101 crumpled-note false false false false 0
+a small crumpled-note 
 It reads: "I burned it! He'll never get out now! Into the fire, and now there's no way to escape!"
+100102 burned-key false false false false 0
+a charred key
+an old fashioned key.  It's tarnished and blackened, as though it was in a fire.
+100103 faded-note false false false false 0
+a yellowing piece of paper with writing
+"the crazy old bastard.  I have to get out of here before it's too late. I don't know if he's oblivious to what's out there, or if he doesn't care... but it's coming and no wall or door will keep it out.  I have to get out of here"

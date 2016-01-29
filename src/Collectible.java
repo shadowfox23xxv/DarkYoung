@@ -49,7 +49,7 @@ public class Collectible extends Items{
     private boolean canUse;
     private boolean isOn;
     private int weight;
-    final static int TOTAL_ITEMS = 2;
+    final static int TOTAL_ITEMS = 4;
     
     //class methods
     public boolean canBeSwung(){

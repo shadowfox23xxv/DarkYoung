@@ -10,3 +10,6 @@ You can smell the musty odor without getting close.  Better not sit on it.  Who 
 101004 fireplace
 a small brick fireplace
 The brick is old and crumbling.  Inside you can see the ash and other remnants of a long dead fire.
+101005 endtable
+an endtable
+a dirty, dusty endtable.  It may have once been painted white, but it's hard to tell now.  There's a single drawer in the front.

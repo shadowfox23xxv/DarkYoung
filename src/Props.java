@@ -40,7 +40,7 @@ public class Props extends Items{
         return itemSet;
     }
 //class fields
-    final static int TOTAL_ITEMS = 4;
+    final static int TOTAL_ITEMS = 5;
 //class methods
 public Props getCopy(){
         Props temp = new Props(this);

@@ -69,7 +69,7 @@ public class DarkYoung {
         * requirements(max length, no punctuation)
         */
         //eliminates non-alphanumeric characters from str
-        str = str.replaceAll("[^a-zA-Z0-9 ]", "");
+        str = str.replaceAll("[^a-zA-Z0-9- ]", "");
         
         //create string array and divide str into array
 	String[] strArray = str.split(" ");
@@ -404,6 +404,16 @@ public class DarkYoung {
                     }
                 break;
                 case ("take"):{
+                    if(player.getSOV() instanceof Container){
+                            Container currentContainer = (Container) player.getSOV();
+                            if (currentContainer.inventory.contains(userInput[1])){
+                                player.inventory.addItem(currentContainer.inventory.takeItem(userInput[1]));
+                                userInterface.pickedUpItem(userInput[1]);
+                            }else{ if ((player.getLocation()).inventory.contains(userInput[1])){
+                                    player.setSOV(player.getLocation());
+                                }else {userInterface.noItemFound(userInput[1], "in here...");}
+                            }
+                    }
                     if (player.getSOV() == player.getLocation()){
                         //code to check location inventory for userInput[1]
                         if ((player.getLocation()).inventory.contains(userInput[1])){
@@ -412,13 +422,7 @@ public class DarkYoung {
                                 userInterface.pickedUpItem(userInput[1]);
                             }
                         }else {userInterface.printWarning(3);}
-                    }else if(player.getSOV() instanceof Container){
-                            Container currentContainer = (Container) player.getSOV();
-                            if (currentContainer.inventory.contains(userInput[1])){
-                                player.inventory.addItem(currentContainer.inventory.takeItem(userInput[1]));
-                                userInterface.pickedUpItem(userInput[1]);
-                            }else{userInterface.noItemFound(userInput[1], "in here...");}
-                    }else {userInterface.printWarning(3);}
+                    }
                     //else(){} add code to check if SOV is set to a container, then 
                     //check if container inventory contains item.  If so, remove
                     //item from conatiner and add to player.inventory  
@@ -508,9 +512,16 @@ public class DarkYoung {
     } 
     
     private void populateItemsToDebugMap(){
-        (Locations.getLocationAtXY(map, 1, 3)).inventory.addItem((masterInventory.getItemReference(100001)).getCopy());
-        (Locations.getLocationAtXY(map, 2, 1)).inventory.addItem((masterInventory.getItemReference(100101)).getCopy());
-        (Locations.getLocationAtXY(map, 1, 3)).inventory.addItem((masterInventory.getItemReference(102001)).getCopy());
+        (Locations.getLocationAtXY(map, 1, 3)).inventory.addItem((masterInventory.getItemReference(100001)).getCopy());//flashlight
+        (Locations.getLocationAtXY(map, 2, 1)).inventory.addItem((masterInventory.getItemReference(100101)).getCopy());//note
+        (Locations.getLocationAtXY(map, 1, 3)).inventory.addItem((masterInventory.getItemReference(102001)).getCopy());//box
+        (Locations.getLocationAtXY(map, 1, 3)).inventory.addItem((masterInventory.getItemReference(101001)).getCopy());//bed
+        (Locations.getLocationAtXY(map, 1, 3)).inventory.addItem((masterInventory.getItemReference(101002)).getCopy());//nightstand
+        (Locations.getLocationAtXY(map, 2, 1)).inventory.addItem((masterInventory.getItemReference(101003)).getCopy());//couch
+        (Locations.getLocationAtXY(map, 2, 1)).inventory.addItem((masterInventory.getItemReference(101004)).getCopy());//fireplace
+        (Locations.getLocationAtXY(map, 2, 1)).inventory.addItem((masterInventory.getItemReference(101005)).getCopy());//endtable
+        //burned-key
+        //faded-note
     }
     
     //constructor
