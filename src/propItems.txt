@@ -19,3 +19,18 @@ the bed has been wrecked. It's frame destroyed, and the mattress has large gashe
 101007 broken-nightstand
 a broken-nightstand
 A pile of splintered wood, it was once a simple nightstand, but no more.
+101008 hotplate
+an old greasy hotplate
+the metal coil  is crusty and blackened, the sides coated with fetid grease.  It's cord shows signs of damage.
+101009 metal-rings
+heavy metal-rings set into the wall
+heavy duty eyelets have been screwed into the wall.  They are sturdily set, and could hold a lot of weight.
+101010 odd-stain
+an odd-stain
+This brownish stain looks runs down the wall.  Not sure I want to know what its from
+101011 broken-window
+a blown out, broken-window
+the glass and muntin have been busted out, and lay scattered on the floor in large pieces.  It must have been a single, powerful blow.  Outside the darkened woods are visible under filtered moonlight.
+101012 window
+a dirty window
+the panes are caked with dust and dirt. Even wiping them doesn't clear the view.  The window itself is firmly shut and won't open.

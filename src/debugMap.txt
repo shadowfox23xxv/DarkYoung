@@ -5,10 +5,10 @@ true true false false false false false false 1 3
 You enter a dim hallway that extends to the east. There is a door to the north.
 You are standing in a darkend hallway that extends to the east. There is a door to the north.
 true false true true false false false false 3 3
-You enter a dim hallway that extends to the west. There is a door to the south.
-You are standing in a dim hallway that extends to the west. Set at the near end of the hallway is a small, dirty window. There is a door to the south.
+You enter a dim hallway that extends to the west. There is a door to the south and north.
+You are standing in a dim hallway that extends to the west. Set at the near end of the hallway is a small, dirty window. There is a door to the south and north.
 true true true true false false false false 3 2
-You enter a den, with simple furniture.  A couch, an endtable, and a fireplace. There is a door to the north, and a thicker, heavier door to the south.
+You enter a den, with simple furniture.  A couch, an endtable, and a fireplace. There is a door to the north, east, and west, and a thicker heavier door to the south.
 It's a simple room, dusty and sprinkled with cobwebs.  The couch and endtable looks like it hasn't been used in ages.  The fireplace is dark, and the southern door is heavily boarded.
 false true false true false false false false 2 3
 You enter a dim hallway that extends to the east and west

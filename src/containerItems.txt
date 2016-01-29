@@ -10,3 +10,9 @@ The brick is old and crumbling.  Inside you can see the ash and other remnants o
 102004 endtable
 an endtable
 a dirty, dusty endtable.  It may have once been painted white, but it's hard to tell now.  There's a single drawer in the front.
+102005 pot
+a dirty pot
+an old dirty pot, dinged and scratch from age and use.  Remains of it's last use are still caked and scorched to the bottom.
+102006 cabinet
+a cabinet above the sink
+simple wood structure, it was probably hand made from scrap wood, and poorly painted.

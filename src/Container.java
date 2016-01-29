@@ -38,7 +38,7 @@ public class Container extends Props{
         return itemSet;
     }
 //class fields
-    final static int TOTAL_ITEMS = 4;
+    final static int TOTAL_ITEMS = 6;
     public Inventory inventory = new Inventory();
 //class methods
 public Container getCopy(){

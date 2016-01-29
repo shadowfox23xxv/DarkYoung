@@ -551,12 +551,18 @@ public class DarkYoung {
         (Locations.getLocationAtXY(map, 3, 4)).inventory.addItem((masterInventory.getItemReference(101006)).getCopy());//broken-bed
         (Locations.getLocationAtXY(map, 3, 4)).inventory.addItem((masterInventory.getItemReference(101007)).getCopy());//broken-nightstand
         (Locations.getLocationAtXY(map, 3, 2)).inventory.addItem((masterInventory.getItemReference(101003)).getCopy());//couch
-        
-        
+        (Locations.getLocationAtXY(map, 4, 2)).inventory.addItem((masterInventory.getItemReference(101008)).getCopy());//hotplate
+        (Locations.getLocationAtXY(map, 2, 2)).inventory.addItem((masterInventory.getItemReference(101009)).getCopy());//metal-rings
+        (Locations.getLocationAtXY(map, 2, 2)).inventory.addItem((masterInventory.getItemReference(101010)).getCopy());//odd-stain
+        (Locations.getLocationAtXY(map, 3, 4)).inventory.addItem((masterInventory.getItemReference(101011)).getCopy());//broken-window
+        (Locations.getLocationAtXY(map, 1, 4)).inventory.addItem((masterInventory.getItemReference(101012)).getCopy());//window
+        (Locations.getLocationAtXY(map, 3, 3)).inventory.addItem((masterInventory.getItemReference(101012)).getCopy());//window
         //containers
         (Locations.getLocationAtXY(map, 1, 4)).inventory.addItem((masterInventory.getItemReference(102002)).getCopy());//nightstand
         (Locations.getLocationAtXY(map, 3, 2)).inventory.addItem((masterInventory.getItemReference(102004)).getCopy());//endtable
         (Locations.getLocationAtXY(map, 3, 2)).inventory.addItem((masterInventory.getItemReference(102003)).getCopy());//fireplace
+        (Locations.getLocationAtXY(map, 4, 2)).inventory.addItem((masterInventory.getItemReference(102005)).getCopy());//pot
+        (Locations.getLocationAtXY(map, 4, 2)).inventory.addItem((masterInventory.getItemReference(102006)).getCopy());//cabinet
         //collectibles
         Container tempContainer;
         (Locations.getLocationAtXY(map, 1, 4)).inventory.addItem((masterInventory.getItemReference(100001)).getCopy());//flashlight

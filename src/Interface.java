@@ -86,7 +86,7 @@ public class Interface {
         System.out.println(script.openBackPack(x));
     }
     public void openContainer(String x){
-        System.out.println(script.openContainer(0) + " " + x + ". " + script.openContainer(1));
+        System.out.println(script.openContainer(0) + " " + x + " " + script.openContainer(1));
     }
     public void openContainerEmpty(){
         System.out.println(script.openContainer(2));
