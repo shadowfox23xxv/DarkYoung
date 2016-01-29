@@ -198,7 +198,16 @@ public class DarkYoung {
                     }
                 }
                 break;
-                
+                case "put" : { if (strArray.length ==2){
+                        isValid = true;
+                    }
+                }
+                break;
+                case "place" : { if (strArray.length ==2){
+                        isValid = true;
+                    }
+                }
+                break;
                 //debug mode commands
                 case "myhealth": { if (strArray.length == 1 && debugModeOn == true){
                         isValid = true;
@@ -353,7 +362,6 @@ public class DarkYoung {
                         //code to check location inventory and equiped for userInput[1]
                         if((player.getLocation()).inventory.contains(userInput[1])){
                             userInterface.printItemDescriptionDetailed((player.getLocation()).inventory.getItemReference(userInput[1]));
-                            userInterface.printItemDescriptionDetailed((player.getLocation()).inventory.getItemReference(userInput[1]));
                         }else {userInterface.noItemFound(userInput[1], "around you...");}
                     }else if(player.getSOV() == player){
                         //code to check player.inventory for userInput[1]
@@ -361,11 +369,12 @@ public class DarkYoung {
                             userInterface.printItemDescriptionDetailed(player.inventory.getItemReference(userInput[1]));
                         }else {userInterface.noItemFound(userInput[1], "in your pack...");}
                         
-                    }//else(){} add code to check if SOV is set to a container, then 
-                    //check if container inventory contains item.  If so, print
-                    //description.  If not, print warning
-                    //then add last else to print SOV error warning
-                    
+                    }else if (player.getSOV() instanceof Container){
+                        Container currentContainer = (Container) player.getSOV();
+                        if (currentContainer.inventory.contains(userInput[1])){
+                            userInterface.printItemDescriptionDetailed(currentContainer.inventory.getItemReference(userInput[1]));
+                        }else{userInterface.noItemFound(userInput[1], "in here...");}
+                    }                                       
                 }
                 break;
                 case "open": {
@@ -375,18 +384,24 @@ public class DarkYoung {
                         if (player.inventory.empty() != true){//!!!!!!!!!!!!!!!!
                             //throwing null pointer exception
                             //may be related to inventory object within
-                            //player. Possibly not inheriting right
+                            //player. Possibly not inheriting right//seems to be fixed
                             String[] inventoryList = player.inventory.listItems();
                             userInterface.openBackPack(1);
                             userInterface.printItemList(inventoryList);
                         }else {userInterface.openBackPack(0);}
-                    }else{userInterface.printWarning(3);}
-                       
-                    //code to check userInput[1] against containers in room
-                        //change scopeOfView to container
-                        //if match found, print content of conatiner.inventory
-                    
-                }
+                    }else if ((player.getLocation()).inventory.contains(userInput[1])){
+                            if (((player.getLocation()).inventory.getItemReference(userInput[1])) instanceof Container){
+                                Container currentContainer = (Container) (player.getLocation()).inventory.getItemReference(userInput[1]);
+                                player.setSOV((player.getLocation()).inventory.getItemReference(userInput[1]));
+                                //!!!add code for container opened script display
+                                userInterface.openContainer(userInput[1]);
+                                String[] inventoryList = currentContainer.inventory.listItems();
+                                if (inventoryList != null && inventoryList.length>0){
+                                    userInterface.printItemList(inventoryList);
+                                }else {userInterface.openContainerEmpty();}
+                            }
+                        }else {userInterface.printWarning(3);}
+                    }
                 break;
                 case ("take"):{
                     if (player.getSOV() == player.getLocation()){
@@ -397,7 +412,13 @@ public class DarkYoung {
                                 userInterface.pickedUpItem(userInput[1]);
                             }
                         }else {userInterface.printWarning(3);}
-                    }
+                    }else if(player.getSOV() instanceof Container){
+                            Container currentContainer = (Container) player.getSOV();
+                            if (currentContainer.inventory.contains(userInput[1])){
+                                player.inventory.addItem(currentContainer.inventory.takeItem(userInput[1]));
+                                userInterface.pickedUpItem(userInput[1]);
+                            }else{userInterface.noItemFound(userInput[1], "in here...");}
+                    }else {userInterface.printWarning(3);}
                     //else(){} add code to check if SOV is set to a container, then 
                     //check if container inventory contains item.  If so, remove
                     //item from conatiner and add to player.inventory  
@@ -417,13 +438,22 @@ public class DarkYoung {
                 }
                 break;
                 case ("put"):{
+                    if (player.getSOV() instanceof Container){
+                        Container currentContainer = (Container) player.getSOV();
+                        currentContainer.inventory.addItem(player.inventory.takeItem(userInput[1]));
+                        userInterface.putItem(userInput[1], currentContainer.getName());
+                    }else{userInterface.printWarning(3);}
                     //add code to confirm SOV is a container
                         //if so, remove item from player.inventory and add to container's
                     //if not, print warning
                 }
                 break;
                 case ("place"):{
-                    //same as put
+                    if (player.getSOV() instanceof Container){
+                        Container currentContainer = (Container) player.getSOV();
+                        currentContainer.inventory.addItem(player.inventory.takeItem(userInput[1]));
+                        userInterface.putItem(userInput[1], currentContainer.getName());
+                    }else{userInterface.printWarning(3);}
                 }
                 break;
                 

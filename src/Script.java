@@ -33,9 +33,12 @@ public class Script {
     private String isNo;
     private String dropped;
     private String picked;
+    private String cOpen0;
+    private String cOpen1;
+    private String put;
     
     public Script(){
-	String[] reader = new String[50];
+	String[] reader = new String[50];//50 is an arbitrary number that should be sufficient to handle the length of any script line
         try {
             File file = new File("src/script.txt");
             FileReader fileReader = new FileReader(file);
@@ -74,6 +77,9 @@ public class Script {
     isNo = reader[21];
     dropped = reader[22];
     picked = reader[23];
+    cOpen0 = reader[24];
+    cOpen1 = reader[25];
+    put = reader[26];
     }    
     
     //Game title
@@ -192,6 +198,18 @@ public class Script {
             default: return ("open backpack option not available");
         }
     }
+    
+    public String openContainer(int x){
+        switch (x){
+            case 0: return cOpen0;
+            //break statement removed as unreachable
+            case 1: return cOpen1;
+            //break statement removed as unreachable
+            case 2: return open0;
+            //break statement removed as unreachable
+            default: return ("open container option not available");
+        }
+    }
     public String isNo(){
         return isNo;
     }
@@ -200,6 +218,9 @@ public class Script {
     }
     public String youPickedUp(){
         return picked;
+    }
+    public String youPut(){
+        return put;
     }
        
 }

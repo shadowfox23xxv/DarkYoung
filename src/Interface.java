@@ -85,7 +85,12 @@ public class Interface {
     public void openBackPack(int x){
         System.out.println(script.openBackPack(x));
     }
-
+    public void openContainer(String x){
+        System.out.println(script.openContainer(0) + " " + x + ". " + script.openContainer(1));
+    }
+    public void openContainerEmpty(){
+        System.out.println(script.openContainer(2));
+    }
     //Warnings-------------------------------------------------------------
    //singular warning method to replace warnTooManyWords and warnInvalid
     public void printWarning(int x){
@@ -107,6 +112,9 @@ public class Interface {
     }
     public void droppedItem(String x){
         System.out.println(script.youDropped() + " " + x);
+    }
+    public void putItem(String x, String y){
+        System.out.println(script.youPut() + " " + x + " in the " + y);
     }
     public void pickedUpItem(String x){
         System.out.println(script.youPickedUp() + " " + x);
