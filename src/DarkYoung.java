@@ -358,23 +358,29 @@ public class DarkYoung {
 //Item Commands=================================================================
 //Examine command---------------------------------------------------------------                
                 case "examine": {
+                    if(player.getSOV() == player){
+                        //code to check player.inventory for userInput[1]
+                        if (player.inventory.contains(userInput[1])){
+                            userInterface.printItemDescriptionDetailed(player.inventory.getItemReference(userInput[1]));
+                        }else if ((player.getLocation()).inventory.contains(userInput[1])){
+                            player.setSOV(player.getLocation());
+                        }else{userInterface.noItemFound(userInput[1], "in your pack...");}
+                        
+                    }
+                    if (player.getSOV() instanceof Container){
+                        Container currentContainer = (Container) player.getSOV();
+                        if (currentContainer.inventory.contains(userInput[1])){
+                            userInterface.printItemDescriptionDetailed(currentContainer.inventory.getItemReference(userInput[1]));
+                        }else if ((player.getLocation()).inventory.contains(userInput[1])){
+                            player.setSOV(player.getLocation());
+                        }else{userInterface.noItemFound(userInput[1], "in here...");}
+                    }
                     if (player.getSOV() == player.getLocation()){
                         //code to check location inventory and equiped for userInput[1]
                         if((player.getLocation()).inventory.contains(userInput[1])){
                             userInterface.printItemDescriptionDetailed((player.getLocation()).inventory.getItemReference(userInput[1]));
                         }else {userInterface.noItemFound(userInput[1], "around you...");}
-                    }else if(player.getSOV() == player){
-                        //code to check player.inventory for userInput[1]
-                        if (player.inventory.contains(userInput[1])){
-                            userInterface.printItemDescriptionDetailed(player.inventory.getItemReference(userInput[1]));
-                        }else {userInterface.noItemFound(userInput[1], "in your pack...");}
-                        
-                    }else if (player.getSOV() instanceof Container){
-                        Container currentContainer = (Container) player.getSOV();
-                        if (currentContainer.inventory.contains(userInput[1])){
-                            userInterface.printItemDescriptionDetailed(currentContainer.inventory.getItemReference(userInput[1]));
-                        }else{userInterface.noItemFound(userInput[1], "in here...");}
-                    }                                       
+                    }
                 }
                 break;
                 case "open": {
