@@ -1,3 +1,12 @@
 102001 box
 a small wooden box
 a small hinged top box made of old wooden planks.
+102002 nightstand
+a small wooden nightstand
+a dirty wooden nightstand with one drawer, covered in a thick layer of dust. It doesn't look like it's been touched in years.
+102003 fireplace
+a small brick fireplace
+The brick is old and crumbling.  Inside you can see the ash and other remnants of a long dead fire.
+102004 endtable
+an endtable
+a dirty, dusty endtable.  It may have once been painted white, but it's hard to tell now.  There's a single drawer in the front.

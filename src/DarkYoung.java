@@ -114,10 +114,13 @@ public class DarkYoung {
         if (strArray[0] != null){
             switch (strArray[0]){
                 case "look": { if (strArray.length == 2 && strArray[1].equals("around")){
-                    isValid = true;
-                    }else {userInterface.printWarning(1);}
+                        isValid = true;
+                    }else if (strArray.length == 3 && strArray[1].equals("in")){
+                        isValid = true;
+                    }else{userInterface.printWarning(1);}
                 }    
                 break;
+                
                 case "quit": { if (strArray.length == 1){
                     isValid = true;
                     }else {userInterface.printWarning(1);}
@@ -248,6 +251,30 @@ public class DarkYoung {
                     if (!(player.getLocation()).inventory.empty()){
                         userInterface.itemsInLocation((player.getLocation()).inventory.itemsInInventory());
                         }
+                    }else {if (userInput[1].equals("in")){
+                        if (userInput[2].equals("backpack") || userInput[2].equals("inventory") || userInput[2].equals("bag")){
+                        player.setSOV(player);
+                        if (player.inventory.empty() != true){//!!!!!!!!!!!!!!!!
+                            //throwing null pointer exception
+                            //may be related to inventory object within
+                            //player. Possibly not inheriting right//seems to be fixed
+                            String[] inventoryList = player.inventory.listItems();
+                            userInterface.openBackPack(1);
+                            userInterface.printItemList(inventoryList);
+                        }else {userInterface.openBackPack(0);}
+                    }else if ((player.getLocation()).inventory.contains(userInput[2])){
+                            if (((player.getLocation()).inventory.getItemReference(userInput[2])) instanceof Container){
+                                Container currentContainer = (Container) (player.getLocation()).inventory.getItemReference(userInput[2]);
+                                player.setSOV((player.getLocation()).inventory.getItemReference(userInput[2]));
+                                //!!!add code for container opened script display
+                                userInterface.openContainer(userInput[2]);
+                                String[] inventoryList = currentContainer.inventory.listItems();
+                                if (inventoryList != null && inventoryList.length>0){
+                                    userInterface.printItemList(inventoryList);
+                                }else {userInterface.openContainerEmpty();}
+                            }
+                        }else {userInterface.printWarning(3);}
+                    }
                     }
                 }
                 break;
